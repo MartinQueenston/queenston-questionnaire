@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Queenston M&A | Sell-Side Mandate Questionnaire</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1A2D40;
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --cream: #F8F4EE;
+    --cream-dark: #EDE8DF;
+    --text: #1A1A2E;
+    --text-muted: #6B6B7A;
+    --border: #D4CEC4;
+    --white: #FFFFFF;
+    --red: #C0392B;
+    --green: #1A7A4A;
+    --radius: 4px;
+    --shadow: 0 2px 12px rgba(13,27,42,0.08);
+    --shadow-lg: 0 8px 32px rgba(13,27,42,0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── STICKY HEADER ─────────────────────────────────────────── */
+  .sticky-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 32px;
+    box-shadow: var(--shadow-lg);
+  }
+  .sticky-bar .logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 16px; font-weight: 700; letter-spacing: 1px;
+  }
+  .sticky-bar .logo span { color: var(--white); font-weight: 400; }
+  .sticky-actions { display: flex; align-items: center; gap: 12px; }
+  .save-status {
+    font-size: 12px; color: rgba(255,255,255,0.6);
+    transition: all 0.3s;
+  }
+  .save-status.saved { color: #7ED8A4; }
+  .save-status.saving { color: var(--gold-light); }
+  .btn {
+    padding: 8px 20px; border-radius: var(--radius); font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500; cursor: pointer; border: none; transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn-outline {
+    background: transparent; border: 1px solid rgba(201,168,76,0.5); color: var(--gold);
+  }
+  .btn-outline:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); }
+  .btn-primary { background: var(--gold); color: var(--navy); font-weight: 600; }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-danger { background: transparent; border: 1px solid rgba(192,57,43,0.4); color: #E88; }
+  .btn-danger:hover { background: rgba(192,57,43,0.15); border-color: var(--red); color: #FBB; }
+
+  /* ── PROGRESS BAR ──────────────────────────────────────────── */
+  .progress-wrap {
+    position: fixed; top: 52px; left: 0; right: 0; z-index: 99;
+    height: 3px; background: rgba(255,255,255,0.1);
+  }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    width: 0%; transition: width 0.4s ease;
+  }
+
+  /* ── HERO ───────────────────────────────────────────────────── */
+  .hero {
+    background: var(--navy);
+    padding: 100px 0 48px;
+    text-align: center;
+    border-bottom: 3px solid var(--gold);
+  }
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 3px;
+    color: var(--gold); text-transform: uppercase; margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; color: var(--white); font-weight: 700;
+    line-height: 1.2; margin-bottom: 8px;
+  }
+  .hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: var(--gold-light); font-weight: 400; font-style: italic;
+    margin-bottom: 20px;
+  }
+  .hero-meta {
+    display: flex; align-items: center; justify-content: center; gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-field {
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid rgba(201,168,76,0.4); padding-bottom: 4px;
+  }
+  .hero-meta-field label { color: rgba(255,255,255,0.5); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+  .hero-meta-field input {
+    background: transparent; border: none; outline: none;
+    color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; width: 160px;
+  }
+  .hero-meta-field input::placeholder { color: rgba(255,255,255,0.25); }
+  .confidential-badge {
+    display: inline-block; margin-top: 24px;
+    border: 1px solid rgba(201,168,76,0.3); padding: 6px 20px;
+    font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+  }
+
+  /* ── TOC ────────────────────────────────────────────────────── */
+  .toc {
+    background: var(--white); border: 1px solid var(--border);
+    max-width: 900px; margin: 40px auto; padding: 32px 40px;
+    box-shadow: var(--shadow);
+  }
+  .toc h3 {
+    font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy);
+    margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--gold);
+  }
+  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 32px; }
+  .toc-item {
+    display: flex; align-items: baseline; gap: 10px; padding: 6px 0;
+    border-bottom: 1px dotted var(--border); cursor: pointer;
+    text-decoration: none; color: var(--text); transition: color 0.2s;
+  }
+  .toc-item:hover { color: var(--gold); }
+  .toc-item .toc-code { font-size: 11px; font-weight: 600; color: var(--gold); min-width: 36px; letter-spacing: 0.5px; }
+  .toc-module-header {
+    grid-column: 1 / -1; font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--navy); background: var(--cream-dark);
+    padding: 8px 12px; margin-top: 8px;
+  }
+
+  /* ── MAIN LAYOUT ────────────────────────────────────────────── */
+  .main { max-width: 960px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* ── MODULE ─────────────────────────────────────────────────── */
+  .module { margin-top: 48px; }
+  .module-header {
+    background: var(--navy-mid); color: var(--white);
+    padding: 16px 24px; display: flex; align-items: center; gap: 16px;
+    position: sticky; top: 55px; z-index: 50;
+    border-left: 4px solid var(--gold);
+  }
+  .module-header .module-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .module-header .module-title {
+    font-family: 'Playfair Display', serif; font-size: 16px; color: var(--white);
+  }
+
+  /* ── SECTION ────────────────────────────────────────────────── */
+  .section {
+    background: var(--white); border: 1px solid var(--border);
+    border-top: none; padding: 28px 32px;
+  }
+  .section + .section { border-top: 1px solid var(--cream-dark); }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-size: 15px; color: var(--navy);
+    margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-subtitle {
+    font-size: 12px; color: var(--text-muted); font-style: italic; margin-bottom: 20px;
+  }
+  .star { color: var(--gold); font-size: 13px; }
+
+  /* ── FORM FIELDS ────────────────────────────────────────────── */
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: block; font-size: 12px; font-weight: 500; color: var(--navy);
+    margin-bottom: 5px; letter-spacing: 0.2px;
+  }
+  .field label .required { color: var(--gold); margin-left: 2px; }
+  .field input[type="text"],
+  .field input[type="date"],
+  .field input[type="email"],
+  .field input[type="tel"],
+  .field input[type="number"],
+  .field input[type="url"],
+  .field select,
+  .field textarea {
+    width: 100%; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 8px 12px; font-family: 'DM Sans', sans-serif; font-size: 13px;
+    color: var(--text); background: var(--white); outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--gold); box-shadow: 0 0 0 2px rgba(201,168,76,0.15);
+  }
+  .field textarea { resize: vertical; min-height: 80px; }
+  .field .hint { font-size: 11px; color: var(--text-muted); margin-top: 3px; font-style: italic; }
+
+  /* ── GRID ROWS ──────────────────────────────────────────────── */
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .row-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+
+  /* ── CHECKBOXES / RADIO ─────────────────────────────────────── */
+  .check-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .check-item {
+    display: flex; align-items: center; gap: 7px; cursor: pointer;
+    padding: 7px 14px; border: 1px solid var(--border); border-radius: 20px;
+    font-size: 12px; color: var(--text); transition: all 0.15s; user-select: none;
+  }
+  .check-item:hover { border-color: var(--gold); color: var(--navy); }
+  .check-item input { display: none; }
+  .check-item.checked { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .check-item { cursor: pointer; }
+  .check-item .check-box {
+    pointer-events: none;
+    width: 14px; height: 14px; border: 1.5px solid currentColor; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .check-item.checked .check-box::after { content: '✓'; font-size: 10px; }
+
+  /* ── SCALE (1-7) ────────────────────────────────────────────── */
+  .scale-group { margin-bottom: 20px; }
+  .scale-label { font-size: 12px; font-weight: 500; color: var(--navy); margin-bottom: 8px; line-height: 1.4; }
+  .scale-sublabel { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; font-style: italic; }
+  .scale-buttons { display: flex; gap: 6px; align-items: center; }
+  .scale-btn {
+    width: 38px; height: 38px; border: 1.5px solid var(--border); border-radius: 50%;
+    background: var(--white); font-size: 13px; font-weight: 500; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; color: var(--text-muted); transition: all 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .scale-btn:hover { border-color: var(--gold); color: var(--navy); }
+  .scale-btn.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .scale-ends { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.3px; }
+
+  /* ── TABLES ─────────────────────────────────────────────────── */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 12px; }
+  .data-table th {
+    background: var(--navy); color: var(--white); padding: 8px 10px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.5px;
+    text-align: left; border: 1px solid var(--navy-mid);
+  }
+  .data-table td {
+    padding: 6px 8px; border: 1px solid var(--border); vertical-align: middle;
+  }
+  .data-table tr:nth-child(even) td { background: var(--cream); }
+  .data-table input[type="text"],
+  .data-table input[type="number"],
+  .data-table select {
+    width: 100%; border: none; background: transparent; outline: none;
+    font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--text);
+    padding: 2px 4px;
+  }
+  .data-table input:focus { background: rgba(201,168,76,0.08); }
+  .data-table .td-select select { font-size: 12px; }
+
+  /* ── YES/NO TOGGLE ──────────────────────────────────────────── */
+  .yn-toggle { display: flex; gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; width: fit-content; }
+  .yn-btn { padding: 5px 14px; font-size: 12px; cursor: pointer; background: var(--white); border: none; font-family: 'DM Sans'; transition: all 0.15s; color: var(--text-muted); }
+  .yn-btn:hover { background: var(--cream-dark); }
+  .yn-btn.active-yes { background: var(--green); color: var(--white); }
+  .yn-btn.active-no { background: var(--red); color: var(--white); }
+
+  /* ── INTRO BOX ──────────────────────────────────────────────── */
+  .intro-box {
+    background: var(--navy); color: var(--white); padding: 32px 36px; margin-top: 40px;
+    border-left: 4px solid var(--gold);
+  }
+  .intro-box h2 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); margin-bottom: 16px; }
+  .intro-box p { color: rgba(255,255,255,0.8); font-size: 13px; margin-bottom: 12px; line-height: 1.7; }
+  .intro-box ul { color: rgba(255,255,255,0.75); font-size: 13px; padding-left: 20px; line-height: 2; }
+  .intro-box h3 { color: var(--gold-light); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin: 20px 0 8px; }
+
+  /* ── SIGNATURE AREA ─────────────────────────────────────────── */
+  .sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .sig-box { border: 1px solid var(--border); padding: 20px; }
+  .sig-box h4 { font-size: 12px; font-weight: 600; color: var(--navy); margin-bottom: 16px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .sig-line { border-bottom: 1px solid var(--border); margin-bottom: 12px; padding-bottom: 4px; }
+  .sig-line label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .sig-line input { width: 100%; border: none; outline: none; font-family: 'DM Sans'; font-size: 13px; padding: 4px 0; background: transparent; }
+
+  /* ── RESET MODAL ────────────────────────────────────────────── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(13,27,42,0.7);
+    z-index: 1000; align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white); padding: 40px; max-width: 420px; width: 90%;
+    box-shadow: var(--shadow-lg); border-top: 3px solid var(--red);
+  }
+  .modal h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 12px; color: var(--navy); }
+  .modal p { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; }
+  .modal-actions { display: flex; gap: 12px; justify-content: flex-end; }
+
+  /* ── DOCUMENT CHECKLIST ─────────────────────────────────────── */
+  .doc-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .doc-table th { background: var(--navy); color: var(--white); padding: 8px 12px; font-size: 11px; font-weight: 500; text-align: left; }
+  .doc-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .doc-table tr:last-child td { border-bottom: none; }
+  .doc-table .doc-name { font-size: 12px; color: var(--text); }
+  .doc-table .required-star { color: var(--gold); margin-right: 4px; }
+
+  /* ── QUESTIONS SECTION ──────────────────────────────────────── */
+  .question-block { margin-bottom: 16px; }
+  .question-block label { font-size: 12px; font-weight: 600; color: var(--navy); display: block; margin-bottom: 4px; }
+  .question-block textarea { width: 100%; border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px; font-family: 'DM Sans'; font-size: 13px; min-height: 60px; resize: vertical; outline: none; transition: border-color 0.2s; }
+  .question-block textarea:focus { border-color: var(--gold); }
+
+  /* ── FOOTER ─────────────────────────────────────────────────── */
+  .footer {
+    background: var(--navy); text-align: center; padding: 24px;
+    font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 1px;
+    margin-top: 48px;
+  }
+  .footer span { color: var(--gold); }
+
+  /* ── TOAST ──────────────────────────────────────────────────── */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 200;
+    background: var(--navy); color: var(--white); padding: 12px 20px;
+    border-left: 3px solid var(--gold); font-size: 13px;
+    box-shadow: var(--shadow-lg); transform: translateY(80px); opacity: 0;
+    transition: all 0.3s ease; pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* Appendix K table */
+  .appendix-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .appendix-table th { background: var(--navy); color: var(--white); padding: 10px 14px; font-size: 12px; }
+  .appendix-table td { border: 1px solid var(--border); padding: 8px 12px; }
+  .appendix-table input { width: 100%; border: none; background: transparent; font-family: 'DM Sans'; font-size: 13px; outline: none; padding: 2px; }
+
+  @media (max-width: 680px) {
+    .row-2, .row-3, .row-4 { grid-template-columns: 1fr; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .sig-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 26px; }
+    .module-header { top: 48px; }
+    .section { padding: 20px 18px; }
+  }
+
+  /* ── PRINT STYLES ───────────────────────────────────────────── */
+  @media print {
+    @page { size: letter; margin: 14mm 14mm 16mm 14mm; }
+    body { background: #fff !important; font-size: 11px !important; }
+    .sticky-bar, .progress-wrap, .modal-overlay, .toast { display: none !important; }
+    .hero { background: #0D1B2A !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 32px 24px 24px !important; border-bottom: 3px solid #C9A84C !important; }
+    .hero h1 { font-size: 26px !important; }
+    .hero h2 { font-size: 16px !important; }
+    .module-header { background: #1A2D40 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; position: relative !important; top: auto !important; page-break-after: avoid; break-after: avoid; border-left: 4px solid #C9A84C !important; }
+    .section { page-break-inside: avoid; break-inside: avoid; border: 1px solid #D4CEC4 !important; }
+    .module { page-break-before: always; break-before: always; margin-top: 0 !important; }
+    .module:first-of-type { page-break-before: auto; break-before: auto; }
+    .toc { page-break-after: always; break-after: always; box-shadow: none !important; }
+    .toc h3 { border-bottom: 2px solid #C9A84C !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .intro-box { background: #0D1B2A !important; border-left: 4px solid #C9A84C !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .data-table th, .doc-table th, .appendix-table th { background: #0D1B2A !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .data-table tr:nth-child(even) td { background: #F8F4EE !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .scale-btn { width: 28px !important; height: 28px !important; font-size: 11px !important; border: 1.5px solid #D4CEC4 !important; }
+    .scale-btn.active { background: #0D1B2A !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .check-item.checked { background: #0D1B2A !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .yn-btn.active-yes { background: #1A7A4A !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .yn-btn.active-no { background: #C0392B !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], textarea, select { border: none !important; border-bottom: 1px solid #ccc !important; border-radius: 0 !important; background: transparent !important; padding: 2px 0 !important; font-size: 11px !important; }
+    .data-table input, .data-table select, .appendix-table input { border-bottom: none !important; }
+    .sig-box { border: 1px solid #D4CEC4 !important; }
+    .footer { background: #0D1B2A !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .main { padding-bottom: 20px !important; }
+  }
+  /* ?? INPUT PREFIX ($ and %) ??????????????????????????????????? */
+  .input-prefix-wrap {
+    display: inline-flex; align-items: center;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--white); overflow: hidden; transition: border-color 0.2s;
+  }
+  .input-prefix-wrap:focus-within { border-color: var(--gold); }
+  .input-prefix-symbol {
+    padding: 0 7px; background: var(--cream-dark); color: var(--text-muted);
+    font-size: 13px; font-weight: 500; border-right: 1px solid var(--border);
+    white-space: nowrap; user-select: none; line-height: 34px;
+  }
+  .input-prefix-wrap input {
+    border: none !important; background: transparent !important;
+    outline: none; padding: 6px 8px; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; color: var(--text); min-width: 70px;
+  }
+  .data-table td .input-prefix-wrap,
+  .doc-table td .input-prefix-wrap { width: 100%; }
+  .data-table td .input-prefix-wrap input { width: 100%; min-width: 0; }
+
+  /* ?? TIMESTAMP CHECKBOX ??????????????????????????????????????? */
+  .ts-check-wrap { display: flex; align-items: center; justify-content: center; }
+  .ts-checkbox {
+    appearance: none; -webkit-appearance: none;
+    width: 18px; height: 18px; border: 2px solid var(--border);
+    border-radius: 3px; cursor: pointer; flex-shrink: 0;
+    background: var(--white); transition: all 0.15s; position: relative;
+  }
+  .ts-checkbox:checked { background: var(--navy); border-color: var(--navy); }
+  .ts-checkbox:checked::after {
+    content: "?"; position: absolute; top: -1px; left: 2px;
+    color: var(--gold); font-size: 12px; font-weight: 700;
+  }
+  .ts-checkbox:hover { border-color: var(--gold); }
+  .ts-date-cell { display: flex; align-items: center; gap: 6px; }
+  .ts-date-input {
+    flex: 1; border: none; background: transparent;
+    font-size: 11px; color: var(--green); font-weight: 500;
+    font-family: 'DM Sans', sans-serif; outline: none; cursor: default;
+  }
+  .ts-date-input::placeholder { color: var(--text-muted); font-style: italic; font-size: 11px; }
+
+  /* ?? EDITABLE LABEL INPUTS IN TABLE FIRST COLUMN ????????????? */
+  .data-table td > input.editable-label,
+  .doc-table td > input.editable-label {
+    width: 100%; border: none; background: transparent;
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    color: var(--text); outline: none; padding: 0;
+  }
+  .data-table td > input.editable-label::placeholder,
+  .doc-table td > input.editable-label::placeholder { color: var(--text-muted); font-style: italic; }
+  .doc-table td.doc-name { display: flex; align-items: center; gap: 5px; }
+
+</style>
+</head>
+<body>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar">
+  <div class="logo">QUEENSTON <span>M&A INC.</span></div>
+  <div class="sticky-actions">
+    <span class="save-status" id="saveStatus">● Auto-save on</span>
+    <button class="btn btn-outline" onclick="exportData()">Export JSON</button>
+    <button class="btn btn-primary" onclick="printPDF()">⎙ Print / Save PDF</button>
+    <button class="btn btn-danger" onclick="openResetModal()">↺ Reset</button>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap"><div class="progress-fill" id="progressFill"></div></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Queenston M&amp;A Inc. · Mergers &amp; Acquisitions</div>
+  <h1>SELL-SIDE MANDATE</h1>
+  <h2>Comprehensive Seller's Questionnaire</h2>
+  <div class="hero-meta">
+    <div class="hero-meta-field">
+      <label>Date</label>
+      <input type="text" id="header_date" placeholder="YYYY-MM-DD" data-key="header_date">
+    </div>
+    <div class="hero-meta-field">
+      <label>File No.</label>
+      <input type="text" id="header_fileno" placeholder="QMA-2025-XXX" data-key="header_fileno">
+    </div>
+  </div>
+  <div class="confidential-badge">Confidential &nbsp;·&nbsp; Version 1.0 &nbsp;·&nbsp; Internal Use Only</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- INTRO -->
+<div class="intro-box">
+  <h2>Introduction &amp; Purpose</h2>
+  <p>This questionnaire has been designed by Queenston M&A Inc. to support a structured, efficient, and confidential sell-side mandate in the Canadian financial services industry. It covers every dimension a sophisticated buyer will assess during due diligence, while also helping us identify the ideal buyer profile for your practice.</p>
+  <h3>What this document produces</h3>
+  <ul>
+    <li>Seller Psychometric &amp; Strategic Profile — to match you with the right buyer</li>
+    <li>Confidential Information Memorandum (CIM)</li>
+    <li>Anonymous Teaser Document — 1–2 page summary</li>
+    <li>10-Year Financial Projections Model</li>
+    <li>Transition Plan Summary</li>
+  </ul>
+  <h3>Instructions</h3>
+  <p>Complete all sections. Fields marked ★ are essential for valuation. For financial data, provide the last five (5) fiscal years. Write 'N/A' where not applicable. All information is strictly confidential under our signed NDA.</p>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h3>Table of Contents</h3>
+  <div class="toc-grid">
+    <div class="toc-module-header">MODULE A | Seller Identity &amp; Ownership</div>
+    <a class="toc-item" href="#a1"><span class="toc-code">A.1</span> General Business Identification</a>
+    <a class="toc-item" href="#a2"><span class="toc-code">A.2</span> Ownership Structure</a>
+    <a class="toc-item" href="#a3"><span class="toc-code">A.3</span> Regulatory Licences &amp; Affiliations</a>
+    <a class="toc-item" href="#a4"><span class="toc-code">A.4</span> Transaction Parameters</a>
+    <div class="toc-module-header">MODULE B | Seller Profile, Vision &amp; Buyer-Matching</div>
+    <a class="toc-item" href="#b1"><span class="toc-code">B.1</span> Motivations &amp; Timeline</a>
+    <a class="toc-item" href="#b2"><span class="toc-code">B.2</span> Leadership &amp; Management Style</a>
+    <a class="toc-item" href="#b3"><span class="toc-code">B.3</span> Business Philosophy &amp; Values</a>
+    <a class="toc-item" href="#b4"><span class="toc-code">B.4</span> Deal Preferences</a>
+    <a class="toc-item" href="#b5"><span class="toc-code">B.5</span> Ideal Buyer Profile</a>
+    <a class="toc-item" href="#b6"><span class="toc-code">B.6</span> Behavioral Style</a>
+    <a class="toc-item" href="#b7"><span class="toc-code">B.7</span> Motivational Profile</a>
+    <a class="toc-item" href="#b8"><span class="toc-code">B.8</span> Communication &amp; Decision-Making Style</a>
+    <a class="toc-item" href="#b9"><span class="toc-code">B.9</span> Personal Values &amp; Legacy</a>
+    <div class="toc-module-header">MODULE C | Business Overview &amp; History</div>
+    <a class="toc-item" href="#c1"><span class="toc-code">C.1</span> Firm History &amp; Evolution</a>
+    <a class="toc-item" href="#c2"><span class="toc-code">C.2</span> Services &amp; Revenue Lines</a>
+    <a class="toc-item" href="#c3"><span class="toc-code">C.3</span> Distribution Channels &amp; Value Proposition</a>
+    <a class="toc-item" href="#c4"><span class="toc-code">C.4</span> Office Locations</a>
+    <div class="toc-module-header">MODULE D | Client Base &amp; Relationship Capital</div>
+    <a class="toc-item" href="#d1"><span class="toc-code">D.1</span> Client Concentration &amp; Key Metrics</a>
+    <a class="toc-item" href="#d2"><span class="toc-code">D.2</span> Client Age Distribution</a>
+    <a class="toc-item" href="#d3"><span class="toc-code">D.3</span> Asset Concentration</a>
+    <a class="toc-item" href="#d4"><span class="toc-code">D.4</span> Asset Growth (Last 12 Months)</a>
+    <a class="toc-item" href="#d5"><span class="toc-code">D.5</span> Client Segmentation by Profile</a>
+    <a class="toc-item" href="#d6"><span class="toc-code">D.6</span> Asset Breakdown by Product</a>
+    <a class="toc-item" href="#d7"><span class="toc-code">D.7</span> Geographic Distribution</a>
+    <div class="toc-module-header">MODULE E | Financial Information</div>
+    <a class="toc-item" href="#e1"><span class="toc-code">E.1</span> Revenue Summary — Last 5 Fiscal Years</a>
+    <a class="toc-item" href="#e2"><span class="toc-code">E.2</span> Recurring vs. Transactional Revenue</a>
+    <a class="toc-item" href="#e3"><span class="toc-code">E.3</span> Expense Summary — Last 5 Fiscal Years</a>
+    <a class="toc-item" href="#e4"><span class="toc-code">E.4</span> Normalized / Add-Back Expenses</a>
+    <a class="toc-item" href="#e5"><span class="toc-code">E.5</span> Balance Sheet Summary</a>
+    <a class="toc-item" href="#e6"><span class="toc-code">E.6</span> Financial Documents Checklist</a>
+    <div class="toc-module-header">MODULE F | Human Resources &amp; Team</div>
+    <a class="toc-item" href="#f1"><span class="toc-code">F.1</span> Employee Roster (Anonymized)</a>
+    <a class="toc-item" href="#f2"><span class="toc-code">F.2</span> Independent Contractors / Sub-Advisors</a>
+    <a class="toc-item" href="#f3"><span class="toc-code">F.3</span> Key Person Risk &amp; Succession</a>
+    <a class="toc-item" href="#f4"><span class="toc-code">F.4</span> Employment Agreements &amp; HR Policies</a>
+    <div class="toc-module-header">MODULE G | Operations, Technology &amp; Compliance</div>
+    <a class="toc-item" href="#g1"><span class="toc-code">G.1</span> Technology Stack</a>
+    <a class="toc-item" href="#g2"><span class="toc-code">G.2</span> Compliance &amp; Regulatory History</a>
+    <a class="toc-item" href="#g3"><span class="toc-code">G.3</span> Carrier &amp; Platform Relationships</a>
+    <div class="toc-module-header">MODULE H | Transition Plan</div>
+    <a class="toc-item" href="#h1"><span class="toc-code">H.1</span> Client Communication Strategy</a>
+    <a class="toc-item" href="#h2"><span class="toc-code">H.2</span> Staff &amp; Team Transition</a>
+    <a class="toc-item" href="#h3"><span class="toc-code">H.3</span> Seller's Availability Post-Closing</a>
+    <a class="toc-item" href="#h4"><span class="toc-code">H.4</span> Technology &amp; Data Migration</a>
+    <a class="toc-item" href="#h5"><span class="toc-code">H.5</span> Regulatory &amp; Compliance Transition</a>
+    <a class="toc-item" href="#h6"><span class="toc-code">H.6</span> Key Risks the Buyer Should Know</a>
+    <div class="toc-module-header">MODULE I | Supporting Documents</div>
+    <a class="toc-item" href="#i1"><span class="toc-code">I.1</span> Master Document Checklist</a>
+    <a class="toc-item" href="#i2"><span class="toc-code">I.2</span> Questions for Queenston M&A</a>
+    <a class="toc-item" href="#i3"><span class="toc-code">I.3</span> Certification &amp; Signature</a>
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE A ═══════════════ -->
+<div class="module" id="modA">
+  <div class="module-header">
+    <div>
+      <div class="module-label">Module A</div>
+      <div class="module-title">Seller Identity &amp; Ownership</div>
+    </div>
+  </div>
+
+  <!-- A.1 -->
+  <div class="section" id="a1">
+    <div class="section-title"><span class="star">★</span> A.1 General Business Identification</div>
+    <div class="section-subtitle">Please provide legal and operating information as it appears on official documents.</div>
+    <div class="row-2">
+      <div class="field"><label>Legal Business Name <span class="required">★</span></label><input type="text" data-key="a1_legal_name" placeholder="As registered with the province"></div>
+      <div class="field"><label>Trade Name / DBA</label><input type="text" data-key="a1_trade_name" placeholder="If different from legal name"></div>
+      <div class="field"><label>Corporate Registration No. <span class="required">★</span></label><input type="text" data-key="a1_reg_no"></div>
+      <div class="field"><label>Province of Incorporation <span class="required">★</span></label><input type="text" data-key="a1_province"></div>
+      <div class="field"><label>Date of Incorporation</label><input type="text" data-key="a1_incorporation_date" placeholder="YYYY-MM-DD"></div>
+      <div class="field"><label>Website URL</label><input type="url" data-key="a1_website" placeholder="https://"></div>
+      <div class="field"><label>Business Address — Street <span class="required">★</span></label><input type="text" data-key="a1_address_street"></div>
+      <div class="field"><label>Business Address — City</label><input type="text" data-key="a1_address_city"></div>
+      <div class="field"><label>Province / Postal Code</label><input type="text" data-key="a1_address_prov_post"></div>
+      <div class="field"><label>Primary Contact Email</label><input type="email" data-key="a1_email"></div>
+      <div class="field"><label>Primary Contact Phone</label><input type="tel" data-key="a1_phone"></div>
+    </div>
+  </div>
+
+  <!-- A.2 -->
+  <div class="section" id="a2">
+    <div class="section-title">A.2 Ownership Structure</div>
+    <div class="section-subtitle">List all partners / shareholders. Attach a shareholder agreement if available.</div>
+    <table class="data-table" id="ownershipTable">
+      <thead>
+        <tr>
+          <th>Partner / Owner Name</th><th>Role / Title</th><th>Approx. Age</th>
+          <th>% Ownership</th><th>Licensed?</th><th>Years with Firm</th><th>Retiring?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><input type="text" data-key="a2_r1_name"></td><td><input type="text" data-key="a2_r1_role"></td><td><input type="text" data-key="a2_r1_age"></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="a2_r1_pct" inputmode="numeric"></div></td><td class="td-select"><select data-key="a2_r1_lic"><option></option><option>Yes</option><option>No</option></select></td><td><input type="text" data-key="a2_r1_years"></td><td class="td-select"><select data-key="a2_r1_ret"><option></option><option>Yes</option><option>No</option></select></td></tr>
+        <tr><td><input type="text" data-key="a2_r2_name"></td><td><input type="text" data-key="a2_r2_role"></td><td><input type="text" data-key="a2_r2_age"></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="a2_r2_pct" inputmode="numeric"></div></td><td class="td-select"><select data-key="a2_r2_lic"><option></option><option>Yes</option><option>No</option></select></td><td><input type="text" data-key="a2_r2_years"></td><td class="td-select"><select data-key="a2_r2_ret"><option></option><option>Yes</option><option>No</option></select></td></tr>
+        <tr><td><input type="text" data-key="a2_r3_name"></td><td><input type="text" data-key="a2_r3_role"></td><td><input type="text" data-key="a2_r3_age"></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="a2_r3_pct" inputmode="numeric"></div></td><td class="td-select"><select data-key="a2_r3_lic"><option></option><option>Yes</option><option>No</option></select></td><td><input type="text" data-key="a2_r3_years"></td><td class="td-select"><select data-key="a2_r3_ret"><option></option><option>Yes</option><option>No</option></select></td></tr>
+        <tr><td><input type="text" data-key="a2_r4_name"></td><td><input type="text" data-key="a2_r4_role"></td><td><input type="text" data-key="a2_r4_age"></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="a2_r4_pct" inputmode="numeric"></div></td><td class="td-select"><select data-key="a2_r4_lic"><option></option><option>Yes</option><option>No</option></select></td><td><input type="text" data-key="a2_r4_years"></td><td class="td-select"><select data-key="a2_r4_ret"><option></option><option>Yes</option><option>No</option></select></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- A.3 -->
+  <div class="section" id="a3">
+    <div class="section-title"><span class="star">★</span> A.3 Regulatory Licences &amp; Affiliations</div>
+    <div class="row-2">
+      <div class="field"><label>Investment Dealer (MFDA / IIROC / CIRO) <span class="required">★</span></label><input type="text" data-key="a3_dealer" placeholder="Name of dealer"></div>
+      <div class="field"><label>Master General Agent (MGA) <span class="required">★</span></label><input type="text" data-key="a3_mga" placeholder="Name of MGA — Insurance"></div>
+      <div class="field"><label>Provinces Licensed <span class="required">★</span></label><input type="text" data-key="a3_provinces" placeholder="List all provinces"></div>
+      <div class="field"><label>Dealer Payout (net from grid)</label><input type="text" data-key="a3_dealer_payout" placeholder="e.g. 88%"></div>
+      <div class="field"><label>MGA Payout Percentage</label><input type="text" data-key="a3_mga_payout" placeholder="e.g. 75%"></div>
+      <div class="field"><label>Back-Office System Used</label><input type="text" data-key="a3_backoffice" placeholder="e.g. Univeris, Dataphile, Kronos"></div>
+      <div class="field"><label>Back-Office Annual Fees ($)</label><input type="text" data-key="a3_backoffice_fees"></div>
+      <div class="field"><label>CRM System Used</label><input type="text" data-key="a3_crm" placeholder="e.g. Salesforce, Redtail, Act!"></div>
+    </div>
+    <div class="field" style="margin-top:8px;">
+      <label>Licences Held <span class="required">★</span> (select all that apply)</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'a3_lic_mf')"><span class="check-box"></span>Mutual Funds</label>
+        <label class="check-item" onclick="toggleCheck(this,'a3_lic_sec')"><span class="check-box"></span>Securities (IIROC)</label>
+        <label class="check-item" onclick="toggleCheck(this,'a3_lic_life')"><span class="check-box"></span>Life Insurance</label>
+        <label class="check-item" onclick="toggleCheck(this,'a3_lic_group')"><span class="check-box"></span>Group Benefits</label>
+        <label class="check-item" onclick="toggleCheck(this,'a3_lic_as')"><span class="check-box"></span>Accident &amp; Sickness</label>
+        <label class="check-item" onclick="toggleCheck(this,'a3_lic_emd')"><span class="check-box"></span>EMD / Portfolio Mgr</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- A.4 -->
+  <div class="section" id="a4">
+    <div class="section-title">A.4 Transaction Parameters</div>
+    <div class="section-subtitle">These parameters reflect the Seller's acceptable economic and structural terms as agreed with Queenston M&A Inc.</div>
+    <table class="data-table">
+      <thead><tr><th style="width:30px">#</th><th>Parameter</th><th>Description</th><th>Target/Condition</th><th>★ Agreed Value</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Valuation Methodology</td><td>Basis used (e.g. Net Annual Recurring Revenue / AUM)</td><td>Per Agreement</td><td><input type="text" data-key="a4_p1"></td></tr>
+        <tr><td>2</td><td>Valuation Multiple</td><td>Multiple applied to methodology</td><td>Minimum</td><td><input type="text" data-key="a4_p2"></td></tr>
+        <tr><td>3</td><td>Cash at Closing</td><td>% of total consideration payable in cash at closing</td><td>Minimum</td><td><input type="text" data-key="a4_p3"></td></tr>
+        <tr><td>4</td><td>Deferred Consideration Term</td><td>Max years for deferred balance</td><td>Maximum</td><td><input type="text" data-key="a4_p4"></td></tr>
+        <tr><td>5</td><td>Annual Deferred Payment Structure</td><td>% of deferred balance payable per year</td><td>Equal installments</td><td><input type="text" data-key="a4_p5"></td></tr>
+        <tr><td>6</td><td>Retention &amp; Terms</td><td>% client assets retained and duration</td><td>Maximum</td><td><input type="text" data-key="a4_p6"></td></tr>
+        <tr><td>7</td><td>Advisory Fee Allocation</td><td>% of Queenston's success fee payable by Seller</td><td>Per Agreement</td><td><input type="text" data-key="a4_p7"></td></tr>
+        <tr><td>8</td><td>Working Capital Adjustment</td><td>Target working capital mechanism</td><td>Per Agreement</td><td><input type="text" data-key="a4_p8"></td></tr>
+        <tr><td>9</td><td>Licensing Requirements</td><td>Regulatory licences required of purchaser</td><td>Per Agreement</td><td><input type="text" data-key="a4_p9"></td></tr>
+        <tr><td>10</td><td>Purchaser Financing Confirmation</td><td>Deadline from LOI signature for financing confirmation</td><td>Maximum</td><td><input type="text" data-key="a4_p10"></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE B ═══════════════ -->
+<div class="module" id="modB">
+  <div class="module-header">
+    <div>
+      <div class="module-label">Module B</div>
+      <div class="module-title">Seller Profile, Vision &amp; Buyer-Matching</div>
+    </div>
+  </div>
+
+  <!-- B.1 -->
+  <div class="section" id="b1">
+    <div class="section-title"><span class="star">★</span> B.1 Motivations &amp; Timeline</div>
+    <div class="field">
+      <label>Primary Reason for Selling <span class="required">★</span></label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'b1_ret')"><span class="check-box"></span>Retirement</label>
+        <label class="check-item" onclick="toggleCheck(this,'b1_health')"><span class="check-box"></span>Health</label>
+        <label class="check-item" onclick="toggleCheck(this,'b1_burnout')"><span class="check-box"></span>Burnout / Life Change</label>
+        <label class="check-item" onclick="toggleCheck(this,'b1_growth')"><span class="check-box"></span>Growth via Partnership</label>
+        <label class="check-item" onclick="toggleCheck(this,'b1_succ')"><span class="check-box"></span>Succession Planning</label>
+        <label class="check-item" onclick="toggleCheck(this,'b1_reloc')"><span class="check-box"></span>Relocation</label>
+      </div>
+    </div>
+    <div class="row-3">
+      <div class="field"><label>Desired Closing Date <span class="required">★</span></label><input type="text" data-key="b1_closing_desired" placeholder="Approximate month/year"></div>
+      <div class="field"><label>Latest Acceptable Closing Date <span class="required">★</span></label><input type="text" data-key="b1_closing_latest" placeholder="Approximate month/year"></div>
+    </div>
+    <div class="field">
+      <label>Post-Transaction Role Desired</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'b1_role_exit')"><span class="check-box"></span>Full Exit / No Role</label>
+        <label class="check-item" onclick="toggleCheck(this,'b1_role_consult612')"><span class="check-box"></span>Consulting (6–12 months)</label>
+        <label class="check-item" onclick="toggleCheck(this,'b1_role_consult12')"><span class="check-box"></span>Consulting (1–2 years)</label>
+        <label class="check-item" onclick="toggleCheck(this,'b1_role_emp')"><span class="check-box"></span>Retained as Employee</label>
+        <label class="check-item" onclick="toggleCheck(this,'b1_role_partner')"><span class="check-box"></span>Retained as Partner</label>
+        <label class="check-item" onclick="toggleCheck(this,'b1_role_open')"><span class="check-box"></span>Open to Discussion</label>
+      </div>
+    </div>
+    <div class="field"><label>If remaining involved, describe your ideal role</label><textarea data-key="b1_role_desc"></textarea></div>
+  </div>
+
+  <!-- B.2 -->
+  <div class="section" id="b2">
+    <div class="section-title">B.2 Leadership &amp; Management Style</div>
+    <div class="section-subtitle">On a scale of 1 to 7, rate yourself on each dimension.</div>
+    <div id="b2_scales">
+      <div class="scale-group">
+        <div class="scale-label">I make decisions collaboratively vs. unilaterally</div>
+        <div class="scale-sublabel">1 = Team Consensus &nbsp;·&nbsp; 7 = Alone</div>
+        <div class="scale-buttons" id="scale_b2_1"></div>
+      </div>
+      <div class="scale-group">
+        <div class="scale-label">My practice culture is informal/family-like vs. formal/corporate</div>
+        <div class="scale-sublabel">1 = Informal &nbsp;·&nbsp; 7 = Corporate</div>
+        <div class="scale-buttons" id="scale_b2_2"></div>
+      </div>
+      <div class="scale-group">
+        <div class="scale-label">I am process-driven vs. relationship-driven</div>
+        <div class="scale-sublabel">1 = Process &nbsp;·&nbsp; 7 = Relationship</div>
+        <div class="scale-buttons" id="scale_b2_3"></div>
+      </div>
+      <div class="scale-group">
+        <div class="scale-label">My growth orientation: organic/steady vs. aggressive/acquisitive</div>
+        <div class="scale-sublabel">1 = Steady &nbsp;·&nbsp; 7 = Aggressive</div>
+        <div class="scale-buttons" id="scale_b2_4"></div>
+      </div>
+      <div class="scale-group">
+        <div class="scale-label">I am technology-forward vs. traditional/paper-based</div>
+        <div class="scale-sublabel">1 = Traditional &nbsp;·&nbsp; 7 = Tech-Forward</div>
+        <div class="scale-buttons" id="scale_b2_5"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B.3 -->
+  <div class="section" id="b3">
+    <div class="section-title">B.3 Business Philosophy &amp; Values</div>
+    <div class="field"><label>Describe your firm's mission or value proposition in 3–5 sentences <span class="required">★</span></label><textarea data-key="b3_mission" style="min-height:100px"></textarea></div>
+    <div class="field"><label>What do you consider the three most important qualities in a potential buyer?</label><textarea data-key="b3_buyer_qualities"></textarea></div>
+    <div class="field"><label>What is your greatest fear in a poorly matched acquisition?</label><textarea data-key="b3_fear"></textarea></div>
+    <div class="field">
+      <label>Client Relationship Style</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'b3_crs_holistic', true)"><span class="check-box"></span>Holistic / Wealth Planning</label>
+        <label class="check-item" onclick="toggleCheck(this,'b3_crs_product', true)"><span class="check-box"></span>Product-Focused</label>
+        <label class="check-item" onclick="toggleCheck(this,'b3_crs_ins', true)"><span class="check-box"></span>Insurance-First</label>
+        <label class="check-item" onclick="toggleCheck(this,'b3_crs_inv', true)"><span class="check-box"></span>Investment-First</label>
+        <label class="check-item" onclick="toggleCheck(this,'b3_crs_fee', true)"><span class="check-box"></span>Fee-Only</label>
+        <label class="check-item" onclick="toggleCheck(this,'b3_crs_trans', true)"><span class="check-box"></span>Transactional</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Team Culture</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'b3_tc_ind', true)"><span class="check-box"></span>Independent Advisors</label>
+        <label class="check-item" onclick="toggleCheck(this,'b3_tc_team', true)"><span class="check-box"></span>Team-Based Model</label>
+        <label class="check-item" onclick="toggleCheck(this,'b3_tc_silo', true)"><span class="check-box"></span>Silo Structure</label>
+        <label class="check-item" onclick="toggleCheck(this,'b3_tc_collab', true)"><span class="check-box"></span>Collaborative / Shared Book</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- B.4 -->
+  <div class="section" id="b4">
+    <div class="section-title"><span class="star">★</span> B.4 Deal Preferences</div>
+    <div class="field">
+      <label>Preferred Deal Structure <span class="required">★</span></label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'b4_full')"><span class="check-box"></span>Full Sale (100% cash)</label>
+        <label class="check-item" onclick="toggleCheck(this,'b4_earnout')"><span class="check-box"></span>Earn-Out Structure</label>
+        <label class="check-item" onclick="toggleCheck(this,'b4_equity')"><span class="check-box"></span>Equity Roll (Stay as Partner)</label>
+        <label class="check-item" onclick="toggleCheck(this,'b4_phased')"><span class="check-box"></span>Phased Purchase</label>
+        <label class="check-item" onclick="toggleCheck(this,'b4_open')"><span class="check-box"></span>Open to All</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Financing Acceptance <span class="required">★</span></label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'b4_f_cash', true)"><span class="check-box"></span>Cash Only</label>
+        <label class="check-item" onclick="toggleCheck(this,'b4_f_bos', true)"><span class="check-box"></span>Balance of Sale Acceptable</label>
+        <label class="check-item" onclick="toggleCheck(this,'b4_f_vendor', true)"><span class="check-box"></span>Vendor Financing OK</label>
+        <label class="check-item" onclick="toggleCheck(this,'b4_f_swap', true)"><span class="check-box"></span>Share Swap Possible</label>
+        <label class="check-item" onclick="toggleCheck(this,'b4_f_disc', true)"><span class="check-box"></span>Open to Discussion</label>
+      </div>
+    </div>
+    <div class="row-2">
+      <div class="field"><label>Minimum acceptable purchase price ($ or Multiple of Revenue)</label><input type="text" data-key="b4_min_price"></div>
+    </div>
+    <div class="field"><label>Non-negotiable terms (e.g., client retention clause)</label><textarea data-key="b4_nonneg"></textarea></div>
+    <div class="field"><label>Clients, employees, or relationships you absolutely want protected post-transaction</label><textarea data-key="b4_protected"></textarea></div>
+  </div>
+
+  <!-- B.5 -->
+  <div class="section" id="b5">
+    <div class="section-title">B.5 Ideal Buyer Profile (Your Perception)</div>
+    <div class="field">
+      <label>Preferred Buyer Type</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'b5_larger', true)"><span class="check-box"></span>Larger Financial Advisory Firm</label>
+        <label class="check-item" onclick="toggleCheck(this,'b5_ins', true)"><span class="check-box"></span>Insurance Company</label>
+        <label class="check-item" onclick="toggleCheck(this,'b5_pe', true)"><span class="check-box"></span>Private Equity Backed Platform</label>
+        <label class="check-item" onclick="toggleCheck(this,'b5_ind', true)"><span class="check-box"></span>Individual Advisor</label>
+        <label class="check-item" onclick="toggleCheck(this,'b5_fo', true)"><span class="check-box"></span>Family Office</label>
+        <label class="check-item" onclick="toggleCheck(this,'b5_none', true)"><span class="check-box"></span>No Preference</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Preferred Buyer Size (AUM)</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'b5_aum_u100', true)"><span class="check-box"></span>Under $100M</label>
+        <label class="check-item" onclick="toggleCheck(this,'b5_aum_100', true)"><span class="check-box"></span>$100M–$500M</label>
+        <label class="check-item" onclick="toggleCheck(this,'b5_aum_500', true)"><span class="check-box"></span>$500M–$1B</label>
+        <label class="check-item" onclick="toggleCheck(this,'b5_aum_1b', true)"><span class="check-box"></span>Over $1B</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Geographic Preference for Buyer</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'b5_geo_city', true)"><span class="check-box"></span>Same City</label>
+        <label class="check-item" onclick="toggleCheck(this,'b5_geo_prov', true)"><span class="check-box"></span>Same Province</label>
+        <label class="check-item" onclick="toggleCheck(this,'b5_geo_can', true)"><span class="check-box"></span>Canada-Wide</label>
+        <label class="check-item" onclick="toggleCheck(this,'b5_geo_none', true)"><span class="check-box"></span>No Preference</label>
+      </div>
+    </div>
+    <div class="field"><label>Describe the ideal buyer in your own words — culture, model, values, size</label><textarea data-key="b5_ideal_desc" style="min-height:100px"></textarea></div>
+  </div>
+
+  <!-- B.6 -->
+  <div class="section" id="b6">
+    <div class="section-title">B.6 Behavioral Style — How You Work Best</div>
+    <div class="section-subtitle">Select the option that feels most true most of the time.</div>
+    <div class="scale-group">
+      <div class="scale-label">When facing a problem, my instinct is to act decisively (1) vs. gather information and proceed carefully (7)</div>
+      <div class="scale-sublabel">1 = Action-First &nbsp;·&nbsp; 7 = Analysis-First</div>
+      <div class="scale-buttons" id="scale_b6_1"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">In client meetings, I tend to do most of the talking (1) vs. ask questions and listen (7)</div>
+      <div class="scale-sublabel">1 = Presenter &nbsp;·&nbsp; 7 = Listener</div>
+      <div class="scale-buttons" id="scale_b6_2"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">I thrive on variety and change (1) vs. I prefer predictable routines and stable environments (7)</div>
+      <div class="scale-sublabel">1 = Change-Seeker &nbsp;·&nbsp; 7 = Stability-Seeker</div>
+      <div class="scale-buttons" id="scale_b6_3"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">I am driven primarily by achieving results (1) vs. maintaining relationships and harmony (7)</div>
+      <div class="scale-sublabel">1 = Results-Driven &nbsp;·&nbsp; 7 = Harmony-Driven</div>
+      <div class="scale-buttons" id="scale_b6_4"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">I am comfortable challenging a client or colleague when I disagree (1) vs. I prefer to accommodate and find consensus (7)</div>
+      <div class="scale-sublabel">1 = Challenger &nbsp;·&nbsp; 7 = Accommodator</div>
+      <div class="scale-buttons" id="scale_b6_5"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">Under stress, I become more direct and demanding (1) vs. I withdraw and become more cautious (7)</div>
+      <div class="scale-sublabel">1 = Escalates &nbsp;·&nbsp; 7 = Retreats</div>
+      <div class="scale-buttons" id="scale_b6_6"></div>
+    </div>
+    <div class="field"><label>Describe a situation where your natural working style created a breakthrough with a client or team.</label><textarea data-key="b6_breakthrough"></textarea></div>
+    <div class="field"><label>Describe a situation where your working style created friction or slowed progress. What did you do?</label><textarea data-key="b6_friction"></textarea></div>
+    <div class="field"><label>What environment brings out your best professionally — describe it in your own words.</label><textarea data-key="b6_best_env"></textarea></div>
+  </div>
+
+  <!-- B.7 -->
+  <div class="section" id="b7">
+    <div class="section-title">B.7 Motivational Profile — What Drives You</div>
+    <div class="section-subtitle">Rate your agreement with each statement (1 = Not at all like me, 7 = Completely like me).</div>
+    <div class="scale-group">
+      <div class="scale-label">RESULTS &amp; ROI — I am most energized when I can see a clear, measurable return on my time and effort. I evaluate most decisions through a cost-benefit lens.</div>
+      <div class="scale-sublabel">1 = Not at all &nbsp;·&nbsp; 7 = Completely</div>
+      <div class="scale-buttons" id="scale_b7_1"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">ETHICS &amp; PRINCIPLES — A strong personal code guides my professional decisions. I would walk away from a deal that feels ethically misaligned, even if financially attractive.</div>
+      <div class="scale-sublabel">1 = Not at all &nbsp;·&nbsp; 7 = Completely</div>
+      <div class="scale-buttons" id="scale_b7_2"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">HARMONY &amp; AESTHETICS — The quality, presentation, and environment of my work matters deeply to me. I am uncomfortable in disorganized, low-quality, or incoherent professional contexts.</div>
+      <div class="scale-sublabel">1 = Not at all &nbsp;·&nbsp; 7 = Completely</div>
+      <div class="scale-buttons" id="scale_b7_3"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">SERVICE &amp; ALTRUISM — I find deep satisfaction in contributing to others' wellbeing — clients, staff, and the community. My practice exists to genuinely improve people's financial lives.</div>
+      <div class="scale-sublabel">1 = Not at all &nbsp;·&nbsp; 7 = Completely</div>
+      <div class="scale-buttons" id="scale_b7_4"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">RECOGNITION &amp; AUTONOMY — I need to feel that my contributions are recognized. I work best with independence and dislike being managed closely or having my judgment overridden.</div>
+      <div class="scale-sublabel">1 = Not at all &nbsp;·&nbsp; 7 = Completely</div>
+      <div class="scale-buttons" id="scale_b7_5"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">KNOWLEDGE &amp; MASTERY — I am energized by learning, growing my expertise, and staying at the forefront of my field. I invest in professional development as a priority, not an afterthought.</div>
+      <div class="scale-sublabel">1 = Not at all &nbsp;·&nbsp; 7 = Completely</div>
+      <div class="scale-buttons" id="scale_b7_6"></div>
+    </div>
+    <div class="field"><label>What motivated you to build this practice — and what has kept you going in difficult periods?</label><textarea data-key="b7_motivated"></textarea></div>
+    <div class="field"><label>What does a 'successful outcome' from this transaction look like for you, personally — beyond the financial terms?</label><textarea data-key="b7_success"></textarea></div>
+    <div class="field"><label>Is there anything about your practice or your clients that you are genuinely worried a buyer will not understand or appreciate?</label><textarea data-key="b7_worried"></textarea></div>
+  </div>
+
+  <!-- B.8 -->
+  <div class="section" id="b8">
+    <div class="section-title">B.8 Communication &amp; Decision-Making Style</div>
+    <div class="scale-group">
+      <div class="scale-label">I prefer to communicate primarily in writing (1) vs. verbally (7)</div>
+      <div class="scale-sublabel">1 = Writing-Preferred &nbsp;·&nbsp; 7 = Verbal-Preferred</div>
+      <div class="scale-buttons" id="scale_b8_1"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">When I receive bad news, my first instinct is to push back directly (1) vs. take time to reflect before responding (7)</div>
+      <div class="scale-sublabel">1 = Immediate Response &nbsp;·&nbsp; 7 = Reflective Response</div>
+      <div class="scale-buttons" id="scale_b8_2"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">I am comfortable making major decisions quickly with incomplete information (1) vs. I need thorough analysis before deciding (7)</div>
+      <div class="scale-sublabel">1 = Fast Decider &nbsp;·&nbsp; 7 = Thorough Decider</div>
+      <div class="scale-buttons" id="scale_b8_3"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">I tend to share my opinions and concerns openly and directly (1) vs. I keep my concerns private and reveal them gradually (7)</div>
+      <div class="scale-sublabel">1 = Open/Direct &nbsp;·&nbsp; 7 = Reserved/Guarded</div>
+      <div class="scale-buttons" id="scale_b8_4"></div>
+    </div>
+    <div class="scale-group">
+      <div class="scale-label">I am energized by social interaction and networking (1) vs. I recharge through independent, focused work (7)</div>
+      <div class="scale-sublabel">1 = Extroverted &nbsp;·&nbsp; 7 = Introverted</div>
+      <div class="scale-buttons" id="scale_b8_5"></div>
+    </div>
+    <div class="field"><label>How do you prefer to be updated by advisors or partners during a complex process? (frequency, format, detail level)</label><textarea data-key="b8_update_pref"></textarea></div>
+    <div class="field"><label>Describe how you have handled a high-stakes negotiation in the past. What was your approach and what did you learn?</label><textarea data-key="b8_negotiation"></textarea></div>
+    <div class="field"><label>Is there a communication style or approach that would make you uncomfortable or distrustful during this transaction process?</label><textarea data-key="b8_uncomfortable"></textarea></div>
+  </div>
+
+  <!-- B.9 -->
+  <div class="section" id="b9">
+    <div class="section-title">B.9 Personal Values &amp; Legacy</div>
+    <div class="field">
+      <label>Select your top 5 core professional values</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'b9_v_integrity')"><span class="check-box"></span>Integrity / Honesty</label>
+        <label class="check-item" onclick="toggleCheck(this,'b9_v_client_loyalty')"><span class="check-box"></span>Client Loyalty</label>
+        <label class="check-item" onclick="toggleCheck(this,'b9_v_prof')"><span class="check-box"></span>Professionalism</label>
+        <label class="check-item" onclick="toggleCheck(this,'b9_v_ethics')"><span class="check-box"></span>Ethical Conduct</label>
+        <label class="check-item" onclick="toggleCheck(this,'b9_v_roi')"><span class="check-box"></span>Results / ROI Focus</label>
+        <label class="check-item" onclick="toggleCheck(this,'b9_v_autonomy')"><span class="check-box"></span>Autonomy / Independence</label>
+        <label class="check-item" onclick="toggleCheck(this,'b9_v_stability')"><span class="check-box"></span>Stability / Security</label>
+        <label class="check-item" onclick="toggleCheck(this,'b9_v_innovation')"><span class="check-box"></span>Innovation / Growth</label>
+        <label class="check-item" onclick="toggleCheck(this,'b9_v_team')"><span class="check-box"></span>Team Collaboration</label>
+        <label class="check-item" onclick="toggleCheck(this,'b9_v_wellbeing')"><span class="check-box"></span>Client Well-Being</label>
+        <label class="check-item" onclick="toggleCheck(this,'b9_v_legacy')"><span class="check-box"></span>Recognition / Legacy</label>
+        <label class="check-item" onclick="toggleCheck(this,'b9_v_balance')"><span class="check-box"></span>Balance / Quality of Life</label>
+      </div>
+    </div>
+    <div class="row-3">
+      <div class="field"><label>1st Most Important Value</label><input type="text" data-key="b9_val1"></div>
+      <div class="field"><label>2nd Most Important Value</label><input type="text" data-key="b9_val2"></div>
+      <div class="field"><label>3rd Most Important Value</label><input type="text" data-key="b9_val3"></div>
+    </div>
+    <div class="field"><label>What legacy do you want to leave with your clients after this transaction is complete?</label><textarea data-key="b9_legacy"></textarea></div>
+    <div class="field"><label>What would need to be true about the buyer for you to feel proud — not just satisfied — about this outcome?</label><textarea data-key="b9_proud"></textarea></div>
+    <div class="field"><label>Is there anything about your personal situation, health, family, or timing that is relevant to how this transaction should be structured or paced?</label><textarea data-key="b9_personal"></textarea></div>
+    <div class="field"><label>What does retirement — or your next chapter — actually look like for you? What are you moving toward, not just away from?</label><textarea data-key="b9_next_chapter"></textarea></div>
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE C ═══════════════ -->
+<div class="module" id="modC">
+  <div class="module-header">
+    <div><div class="module-label">Module C</div><div class="module-title">Business Overview &amp; History</div></div>
+  </div>
+  <div class="section" id="c1">
+    <div class="section-title">C.1 Firm History &amp; Evolution</div>
+    <div class="row-2">
+      <div class="field"><label>Year Founded / Year Practice Established</label><input type="text" data-key="c1_year_founded"></div>
+      <div class="field"><label>Original focus of the business at founding</label><input type="text" data-key="c1_original_focus"></div>
+    </div>
+    <div class="field"><label>Describe the evolution of the firm — how has it grown and changed? <span class="required">★</span></label><textarea data-key="c1_evolution" style="min-height:100px"></textarea></div>
+    <div class="field"><label>Key milestones (acquisitions, regulatory changes, team growth, etc.)</label><textarea data-key="c1_milestones"></textarea></div>
+  </div>
+
+  <div class="section" id="c2">
+    <div class="section-title">C.2 Services &amp; Revenue Lines</div>
+    <div class="section-subtitle">Check all services offered and indicate approximate % of total gross revenue each represents.</div>
+    <table class="data-table">
+      <thead><tr><th>Service / Product Line</th><th>Offered?</th><th>% of Revenue</th><th>Recurring?</th><th style="width:200px">Date Added</th></tr></thead>
+      <tbody id="c2_services"></tbody>
+    </table>
+  </div>
+
+  <div class="section" id="c3">
+    <div class="section-title">C.3 Distribution Channels &amp; Value Proposition</div>
+    <div class="field">
+      <label>Primary Client Acquisition Channel</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'c3_ch_ref')"><span class="check-box"></span>Referrals from Existing Clients</label>
+        <label class="check-item" onclick="toggleCheck(this,'c3_ch_coi')"><span class="check-box"></span>COI Network (Accountants, Lawyers)</label>
+        <label class="check-item" onclick="toggleCheck(this,'c3_ch_digital')"><span class="check-box"></span>Digital / Social Media</label>
+        <label class="check-item" onclick="toggleCheck(this,'c3_ch_seminar')"><span class="check-box"></span>Seminars &amp; Events</label>
+        <label class="check-item" onclick="toggleCheck(this,'c3_ch_cold')"><span class="check-box"></span>Cold Outreach</label>
+        <label class="check-item" onclick="toggleCheck(this,'c3_ch_employer')"><span class="check-box"></span>Employer / Workplace Programs</label>
+      </div>
+    </div>
+    <div class="row-3">
+      <div class="field"><label>Average new clients per year (last 3 years)</label><input type="text" data-key="c3_avg_new_clients" placeholder="# households"></div>
+      <div class="field"><label>Average client retention rate</label><input type="text" data-key="c3_retention" placeholder="% per year"></div>
+    </div>
+    <div class="field"><label>What is your firm's unique competitive advantage? <span class="required">★</span></label><textarea data-key="c3_advantage"></textarea></div>
+    <div class="field"><label>What do clients say they value most about your practice?</label><textarea data-key="c3_client_value"></textarea></div>
+  </div>
+
+  <div class="section" id="c4">
+    <div class="section-title">C.4 Office Locations</div>
+    <table class="data-table">
+      <thead><tr><th>Location / City</th><th>Province</th><th>Owned or Leased</th><th>Annual Cost ($)</th><th>Lease Expiry</th></tr></thead>
+      <tbody>
+        <tr><td><input type="text" data-key="c4_r1_city"></td><td><input type="text" data-key="c4_r1_prov"></td><td><select data-key="c4_r1_tenure"><option></option><option>Owned</option><option>Leased</option></select></td><td><input type="text" data-key="c4_r1_cost"></td><td><input type="text" data-key="c4_r1_expiry"></td></tr>
+        <tr><td><input type="text" data-key="c4_r2_city"></td><td><input type="text" data-key="c4_r2_prov"></td><td><select data-key="c4_r2_tenure"><option></option><option>Owned</option><option>Leased</option></select></td><td><input type="text" data-key="c4_r2_cost"></td><td><input type="text" data-key="c4_r2_expiry"></td></tr>
+        <tr><td><input type="text" data-key="c4_r3_city"></td><td><input type="text" data-key="c4_r3_prov"></td><td><select data-key="c4_r3_tenure"><option></option><option>Owned</option><option>Leased</option></select></td><td><input type="text" data-key="c4_r3_cost"></td><td><input type="text" data-key="c4_r3_expiry"></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE D ═══════════════ -->
+<div class="module" id="modD">
+  <div class="module-header">
+    <div><div class="module-label">Module D</div><div class="module-title">Client Base &amp; Relationship Capital</div></div>
+  </div>
+  <div class="section" id="d1">
+    <div class="section-title"><span class="star">★</span> D.1 Client Concentration &amp; Key Metrics</div>
+    <div class="row-3">
+      <div class="field"><label>Total Number of Client Households <span class="required">★</span></label><input type="text" data-key="d1_households" placeholder="#"></div>
+      <div class="field"><label>Total Number of Individual Clients</label><input type="text" data-key="d1_individuals" placeholder="#"></div>
+      <div class="field"><label>Total Number of Accounts</label><input type="text" data-key="d1_accounts" placeholder="#"></div>
+      <div class="field"><label>Total Assets Under Management (AUM) <span class="required">★</span></label><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d1_aum" inputmode="numeric"></div></div>
+      <div class="field"><label>Total Life Insurance Premiums (Annual)</label><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d1_life_prem" inputmode="numeric"></div></div>
+      <div class="field"><label>Total Group Benefits Premiums (Annual)</label><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d1_group_prem" inputmode="numeric"></div></div>
+      <div class="field"><label>Average AUM per Household</label><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d1_avg_aum" inputmode="numeric"></div></div>
+      <div class="field"><label>Average Client Age</label><input type="text" data-key="d1_avg_age" placeholder="Years"></div>
+      <div class="field"><label>Average Client Tenure</label><input type="text" data-key="d1_avg_tenure" placeholder="Years"></div>
+    </div>
+  </div>
+
+  <div class="section" id="d2">
+    <div class="section-title">D.2 Client Age Distribution</div>
+    <table class="data-table">
+      <thead><tr><th>Client Age Group</th><th>% of Households</th><th>% of Total AUM</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Under 30</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_u30_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_u30_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d2_u30_notes"></td></tr>
+        <tr><td>30s</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_30s_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_30s_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d2_30s_notes"></td></tr>
+        <tr><td>40s</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_40s_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_40s_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d2_40s_notes"></td></tr>
+        <tr><td>50s</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_50s_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_50s_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d2_50s_notes"></td></tr>
+        <tr><td>60s</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_60s_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_60s_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d2_60s_notes"></td></tr>
+        <tr><td>70s</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_70s_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_70s_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d2_70s_notes"></td></tr>
+        <tr><td>80+</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_80_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_80_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d2_80_notes"></td></tr>
+        <tr><td><strong>TOTAL</strong></td><td>100%</td><td>100%</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section" id="d3">
+    <div class="section-title">D.3 Asset Concentration — Top Client Groups</div>
+    <table class="data-table">
+      <thead><tr><th>Client Group</th><th>AUM ($)</th><th>% of Total AUM</th><th>Avg Age</th></tr></thead>
+      <tbody>
+        <tr><td>Top 5 Clients</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d3_top5_aum" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d3_top5_pct" inputmode="numeric"></div></td><td><input type="text" data-key="d3_top5_age"></td></tr>
+        <tr><td>Top 10 Clients</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d3_top10_aum" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d3_top10_pct" inputmode="numeric"></div></td><td><input type="text" data-key="d3_top10_age"></td></tr>
+        <tr><td>Top 25 Clients</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d3_top25_aum" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d3_top25_pct" inputmode="numeric"></div></td><td><input type="text" data-key="d3_top25_age"></td></tr>
+        <tr><td>Top 50 Clients</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d3_top50_aum" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d3_top50_pct" inputmode="numeric"></div></td><td><input type="text" data-key="d3_top50_age"></td></tr>
+        <tr><td>Top 100 Clients</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d3_top100_aum" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d3_top100_pct" inputmode="numeric"></div></td><td><input type="text" data-key="d3_top100_age"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section" id="d4">
+    <div class="section-title">D.4 Asset Growth (Last 12 Months)</div>
+    <table class="data-table">
+      <thead><tr><th>Item</th><th>Amount ($)</th></tr></thead>
+      <tbody>
+        <tr><td>Starting AUM (beginning of period)</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d4_start" inputmode="numeric"></div></td></tr>
+        <tr><td>New client assets added</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d4_new_clients" inputmode="numeric"></div></td></tr>
+        <tr><td>New assets from existing clients</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d4_existing" inputmode="numeric"></div></td></tr>
+        <tr><td>Assets gained from market performance</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d4_market_gain" inputmode="numeric"></div></td></tr>
+        <tr><td>Assets lost from market performance</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d4_market_loss" inputmode="numeric"></div></td></tr>
+        <tr><td>Assets lost from client departures</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d4_departures" inputmode="numeric"></div></td></tr>
+        <tr><td><strong>Ending AUM (end of period)</strong></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="d4_end" inputmode="numeric"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section" id="d5">
+    <div class="section-title">D.5 Client Segmentation by Profile</div>
+    <table class="data-table">
+      <thead><tr><th>Client Profile Type</th><th>% of Households</th><th>% of AUM</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Savers (Accumulators)</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_savers_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_savers_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d5_savers_notes"></td></tr>
+        <tr><td>Professionals (Doctor, Lawyer, etc.)</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_prof_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_prof_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d5_prof_notes"></td></tr>
+        <tr><td>Business Owners / Entrepreneurs</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_biz_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_biz_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d5_biz_notes"></td></tr>
+        <tr><td>Corporate Executives / Managers</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_corp_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_corp_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d5_corp_notes"></td></tr>
+        <tr><td>Farmers / Agricultural</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_farm_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_farm_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d5_farm_notes"></td></tr>
+        <tr><td>Retirees / Decumulators</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_ret_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_ret_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d5_ret_notes"></td></tr>
+        <tr><td>Other</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_other_hh" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_other_aum" inputmode="numeric"></div></td><td><input type="text" data-key="d5_other_notes"></td></tr>
+        <tr><td><strong>TOTAL</strong></td><td>100%</td><td>100%</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section" id="d6">
+    <div class="section-title">D.6 Asset Breakdown by Product</div>
+    <table class="data-table">
+      <thead><tr><th>Product / Asset Class</th><th>AUM / Premiums ($)</th><th>% of Total</th><th>Top Company Used</th><th style="width:200px">Date Added</th></tr></thead>
+      <tbody id="d6_products"></tbody>
+    </table>
+  </div>
+
+  <div class="section" id="d7">
+    <div class="section-title">D.7 Geographic Distribution</div>
+    <table class="data-table">
+      <thead><tr><th>Province / Region</th><th>% of Client Base</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Quebec</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d7_qc" inputmode="numeric"></div></td><td><input type="text" data-key="d7_qc_notes"></td></tr>
+        <tr><td>Ontario</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d7_on" inputmode="numeric"></div></td><td><input type="text" data-key="d7_on_notes"></td></tr>
+        <tr><td>British Columbia</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d7_bc" inputmode="numeric"></div></td><td><input type="text" data-key="d7_bc_notes"></td></tr>
+        <tr><td>Alberta</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d7_ab" inputmode="numeric"></div></td><td><input type="text" data-key="d7_ab_notes"></td></tr>
+        <tr><td>Other Western Provinces</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d7_west" inputmode="numeric"></div></td><td><input type="text" data-key="d7_west_notes"></td></tr>
+        <tr><td>Atlantic Provinces</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d7_atl" inputmode="numeric"></div></td><td><input type="text" data-key="d7_atl_notes"></td></tr>
+        <tr><td>Other</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d7_other" inputmode="numeric"></div></td><td><input type="text" data-key="d7_other_notes"></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE E ═══════════════ -->
+<div class="module" id="modE">
+  <div class="module-header">
+    <div><div class="module-label">Module E</div><div class="module-title">Financial Information</div></div>
+  </div>
+  <div class="section" id="e1">
+    <div class="section-title"><span class="star">★</span> E.1 Revenue Summary — Last 5 Fiscal Years</div>
+    <table class="data-table" id="e1_table"></table>
+  </div>
+  <div class="section" id="e2">
+    <div class="section-title">E.2 Recurring vs. Transactional Revenue Breakdown</div>
+    <table class="data-table">
+      <thead><tr><th>Revenue Type</th><th>Amount ($)</th><th>% of Total</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Recurring / Renewal Revenue</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e2_recur_amt" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="e2_recur_pct" inputmode="numeric"></div></td><td><input type="text" data-key="e2_recur_notes"></td></tr>
+        <tr><td>Transactional / One-Time Revenue</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e2_trans_amt" inputmode="numeric"></div></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="e2_trans_pct" inputmode="numeric"></div></td><td><input type="text" data-key="e2_trans_notes"></td></tr>
+        <tr><td><strong>TOTAL</strong></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e2_total_amt" inputmode="numeric"></div></td><td>100%</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section" id="e3">
+    <div class="section-title">E.3 Expense Summary — Last 5 Fiscal Years</div>
+    <table class="data-table" id="e3_table"></table>
+  </div>
+  <div class="section" id="e4">
+    <div class="section-title">E.4 Normalized / Add-Back Expenses</div>
+    <div class="section-subtitle">Personal or non-recurring expenses run through the business that a buyer would not incur.</div>
+    <table class="data-table">
+      <thead><tr><th>Add-Back Item</th><th>Annual Amount ($)</th><th>Description / Justification</th></tr></thead>
+      <tbody>
+        <tr><td>Owner compensation above market rate</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e4_owner_comp" inputmode="numeric"></div></td><td><input type="text" data-key="e4_owner_comp_desc"></td></tr>
+        <tr><td>Owner vehicle (personal use portion)</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e4_vehicle" inputmode="numeric"></div></td><td><input type="text" data-key="e4_vehicle_desc"></td></tr>
+        <tr><td>Owner life / disability insurance</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e4_ins" inputmode="numeric"></div></td><td><input type="text" data-key="e4_ins_desc"></td></tr>
+        <tr><td>Spouse / family member salary</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e4_spouse" inputmode="numeric"></div></td><td><input type="text" data-key="e4_spouse_desc"></td></tr>
+        <tr><td>Personal travel &amp; entertainment</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e4_travel" inputmode="numeric"></div></td><td><input type="text" data-key="e4_travel_desc"></td></tr>
+        <tr><td>One-time legal or consulting fees</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e4_legal" inputmode="numeric"></div></td><td><input type="text" data-key="e4_legal_desc"></td></tr>
+        <tr><td>Home office allocation</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e4_home" inputmode="numeric"></div></td><td><input type="text" data-key="e4_home_desc"></td></tr>
+        <tr><td>Other personal expenses</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e4_other_pers" inputmode="numeric"></div></td><td><input type="text" data-key="e4_other_pers_desc"></td></tr>
+        <tr><td>Other non-recurring expenses</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e4_other_nonrec" inputmode="numeric"></div></td><td><input type="text" data-key="e4_other_nonrec_desc"></td></tr>
+        <tr><td><strong>TOTAL ADD-BACKS</strong></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e4_total" inputmode="numeric"></div></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section" id="e5">
+    <div class="section-title">E.5 Balance Sheet Summary (Current Year)</div>
+    <div class="row-2">
+      <div>
+        <strong style="font-size:12px;color:var(--navy);display:block;margin-bottom:8px;">ASSETS</strong>
+        <table class="data-table">
+          <tbody>
+            <tr><td>Cash and Cash Equivalents</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_cash" inputmode="numeric"></div></td></tr>
+            <tr><td>Accounts Receivable</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_ar" inputmode="numeric"></div></td></tr>
+            <tr><td>Prepaid Expenses</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_prepaid" inputmode="numeric"></div></td></tr>
+            <tr><td>Equipment / Furniture</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_equip" inputmode="numeric"></div></td></tr>
+            <tr><td>Goodwill / Intangibles</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_goodwill" inputmode="numeric"></div></td></tr>
+            <tr><td>Other Assets</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_other_assets" inputmode="numeric"></div></td></tr>
+            <tr><td><strong>TOTAL ASSETS</strong></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_total_assets" inputmode="numeric"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <strong style="font-size:12px;color:var(--navy);display:block;margin-bottom:8px;">LIABILITIES &amp; EQUITY</strong>
+        <table class="data-table">
+          <tbody>
+            <tr><td>Accounts Payable</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_ap" inputmode="numeric"></div></td></tr>
+            <tr><td>Deferred Revenue</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_deferred" inputmode="numeric"></div></td></tr>
+            <tr><td>Short-Term Debt</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_st_debt" inputmode="numeric"></div></td></tr>
+            <tr><td>Long-Term Debt / Loans</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_lt_debt" inputmode="numeric"></div></td></tr>
+            <tr><td>Other Liabilities</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_other_liab" inputmode="numeric"></div></td></tr>
+            <tr><td><strong>TOTAL LIABILITIES</strong></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_total_liab" inputmode="numeric"></div></td></tr>
+            <tr><td>Shareholders' Equity / Retained Earnings</td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_equity" inputmode="numeric"></div></td></tr>
+            <tr><td><strong>TOTAL LIABILITIES + EQUITY</strong></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e5_total_le" inputmode="numeric"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="e6">
+    <div class="section-title">E.6 Financial Documents Checklist</div>
+    <table class="doc-table">
+      <thead><tr><th>Document Required</th><th style="width:110px">Can Provide?</th><th style="width:230px">Attached? + Date &amp; Time</th></tr></thead>
+      <tbody id="e6_docs"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE F ═══════════════ -->
+<div class="module" id="modF">
+  <div class="module-header">
+    <div><div class="module-label">Module F</div><div class="module-title">Human Resources &amp; Team</div></div>
+  </div>
+  <div class="section" id="f1">
+    <div class="section-title">F.1 Employee Roster (Anonymized)</div>
+    <div class="section-subtitle">Do not include names. Use role titles only. Names may be shared separately under a signed NDA.</div>
+    <table class="data-table">
+      <thead><tr><th>Role / Title</th><th>Hire Date</th><th>Age</th><th>Base Salary</th><th>Bonus</th><th>FT/PT</th><th>Lic.?</th><th>Location</th><th style="width:190px">Date Added</th></tr></thead>
+      <tbody id="f1_tbody"></tbody>
+    </table>
+  </div>
+  <div class="section" id="f2">
+    <div class="section-title">F.2 Independent Contractors / Sub-Advisors</div>
+    <div class="field"><label>Number of contracted independent advisors</label><input type="text" data-key="f2_count" placeholder="#" style="width:120px"></div>
+    <table class="data-table">
+      <thead><tr><th>Role / Specialization</th><th>Approx. % Revenue Contribution</th><th>Contracted Since</th><th>Licensed?</th><th>Under Formal Agreement?</th></tr></thead>
+      <tbody>
+        <tr><td><input type="text" data-key="f2_r1_role"></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="f2_r1_pct" inputmode="numeric"></div></td><td><input type="text" data-key="f2_r1_since" placeholder="MM/YYYY"></td><td><select data-key="f2_r1_lic"><option></option><option>Y</option><option>N</option></select></td><td><select data-key="f2_r1_agree"><option></option><option>Y</option><option>N</option></select></td></tr>
+        <tr><td><input type="text" data-key="f2_r2_role"></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="f2_r2_pct" inputmode="numeric"></div></td><td><input type="text" data-key="f2_r2_since" placeholder="MM/YYYY"></td><td><select data-key="f2_r2_lic"><option></option><option>Y</option><option>N</option></select></td><td><select data-key="f2_r2_agree"><option></option><option>Y</option><option>N</option></select></td></tr>
+        <tr><td><input type="text" data-key="f2_r3_role"></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="f2_r3_pct" inputmode="numeric"></div></td><td><input type="text" data-key="f2_r3_since" placeholder="MM/YYYY"></td><td><select data-key="f2_r3_lic"><option></option><option>Y</option><option>N</option></select></td><td><select data-key="f2_r3_agree"><option></option><option>Y</option><option>N</option></select></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section" id="f3">
+    <div class="section-title">F.3 Key Person Risk &amp; Succession</div>
+    <div class="field"><label>What percentage of client relationships depend on the owner personally?</label><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="f3_dep_pct" inputmode="numeric"></div></div>
+    <div class="field">
+      <label>Has the team been involved in client-facing relationships?</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'f3_team_yes', true)"><span class="check-box"></span>Yes — staff hold their own books</label>
+        <label class="check-item" onclick="toggleCheck(this,'f3_team_partial', true)"><span class="check-box"></span>Partially — some shared relationships</label>
+        <label class="check-item" onclick="toggleCheck(this,'f3_team_no', true)"><span class="check-box"></span>No — owner is sole contact for all clients</label>
+      </div>
+    </div>
+    <div class="field"><label>Describe any key person dependencies or risks a buyer should be aware of.</label><textarea data-key="f3_risks"></textarea></div>
+    <div class="field"><label>Is there a staff member capable of stepping into a leadership role post-transaction?</label><textarea data-key="f3_successor"></textarea></div>
+  </div>
+  <div class="section" id="f4">
+    <div class="section-title">F.4 Employment Agreements &amp; HR Policies</div>
+    <div class="field">
+      <label>Do employees have written employment contracts?</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'f4_contract_all', true)"><span class="check-box"></span>Yes — all employees</label>
+        <label class="check-item" onclick="toggleCheck(this,'f4_contract_some', true)"><span class="check-box"></span>Yes — some employees</label>
+        <label class="check-item" onclick="toggleCheck(this,'f4_contract_no', true)"><span class="check-box"></span>No written contracts</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Are there non-solicitation or non-compete clauses in place?</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'f4_ns_yes', true)"><span class="check-box"></span>Yes</label>
+        <label class="check-item" onclick="toggleCheck(this,'f4_ns_no', true)"><span class="check-box"></span>No</label>
+        <label class="check-item" onclick="toggleCheck(this,'f4_ns_partial', true)"><span class="check-box"></span>Partial</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Benefits provided to employees</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'f4_ben_health')"><span class="check-box"></span>Group Health</label>
+        <label class="check-item" onclick="toggleCheck(this,'f4_ben_dental')"><span class="check-box"></span>Group Dental</label>
+        <label class="check-item" onclick="toggleCheck(this,'f4_ben_dis')"><span class="check-box"></span>Group Disability</label>
+        <label class="check-item" onclick="toggleCheck(this,'f4_ben_pension')"><span class="check-box"></span>Pension / RRSP Matching</label>
+        <label class="check-item" onclick="toggleCheck(this,'f4_ben_profit')"><span class="check-box"></span>Profit Sharing</label>
+        <label class="check-item" onclick="toggleCheck(this,'f4_ben_none')"><span class="check-box"></span>None</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE G ═══════════════ -->
+<div class="module" id="modG">
+  <div class="module-header">
+    <div><div class="module-label">Module G</div><div class="module-title">Operations, Technology &amp; Compliance</div></div>
+  </div>
+  <div class="section" id="g1">
+    <div class="section-title">G.1 Technology Stack</div>
+    <table class="data-table">
+      <thead><tr><th>System Category</th><th>Software / Platform Used</th><th>Notes / Observations</th><th style="width:200px">Date Added</th></tr></thead>
+      <tbody id="g1_tech"></tbody>
+    </table>
+  </div>
+  <div class="section" id="g2">
+    <div class="section-title"><span class="star">★</span> G.2 Compliance &amp; Regulatory History</div>
+    <div class="field">
+      <label>Have you had any regulatory complaints in the last 5 years? <span class="required">★</span></label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'g2_comp_none', true)"><span class="check-box"></span>None</label>
+        <label class="check-item" onclick="toggleCheck(this,'g2_comp_minor', true)"><span class="check-box"></span>1–2 minor complaints</label>
+        <label class="check-item" onclick="toggleCheck(this,'g2_comp_3plus', true)"><span class="check-box"></span>3+ complaints</label>
+        <label class="check-item" onclick="toggleCheck(this,'g2_comp_ongoing', true)"><span class="check-box"></span>Ongoing investigation</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Have you had any E&amp;O (Errors &amp; Omissions) claims? <span class="required">★</span></label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'g2_eo_none', true)"><span class="check-box"></span>None</label>
+        <label class="check-item" onclick="toggleCheck(this,'g2_eo_12', true)"><span class="check-box"></span>1–2 claims, resolved</label>
+        <label class="check-item" onclick="toggleCheck(this,'g2_eo_3plus', true)"><span class="check-box"></span>3+ claims</label>
+        <label class="check-item" onclick="toggleCheck(this,'g2_eo_open', true)"><span class="check-box"></span>Claim currently open</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Are your client files (KYC, suitability) up to date?</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'g2_kyc_yes', true)"><span class="check-box"></span>Yes — all current</label>
+        <label class="check-item" onclick="toggleCheck(this,'g2_kyc_mostly', true)"><span class="check-box"></span>Mostly current, some gaps</label>
+        <label class="check-item" onclick="toggleCheck(this,'g2_kyc_gaps', true)"><span class="check-box"></span>Significant gaps exist</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>AML / KYC Compliance Program in place?</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'g2_aml_formal', true)"><span class="check-box"></span>Yes — formal written policy</label>
+        <label class="check-item" onclick="toggleCheck(this,'g2_aml_informal', true)"><span class="check-box"></span>Informal process</label>
+        <label class="check-item" onclick="toggleCheck(this,'g2_aml_no', true)"><span class="check-box"></span>No formal policy</label>
+      </div>
+    </div>
+    <div class="field"><label>Describe any material compliance issues, regulatory reviews, or legal proceedings (past or present).</label><textarea data-key="g2_compliance_desc"></textarea></div>
+  </div>
+  <div class="section" id="g3">
+    <div class="section-title">G.3 Carrier &amp; Platform Relationships</div>
+    <div class="section-subtitle">List your top 5 investment companies and top 5 insurance carriers by revenue.</div>
+    <table class="data-table">
+      <thead><tr><th>Company / Carrier Name</th><th>% of Revenue</th><th>Type (Investment / Insurance / Both)</th><th style="width:200px">Date Added</th></tr></thead>
+      <tbody id="g3_carriers"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE H ═══════════════ -->
+<div class="module" id="modH">
+  <div class="module-header">
+    <div><div class="module-label">Module H</div><div class="module-title">Transition Plan — Seller's Perspective</div></div>
+  </div>
+  <div class="section" id="h1">
+    <div class="section-title">H.1 Client Communication Strategy</div>
+    <div class="field">
+      <label>How do you envision clients being informed of the transaction?</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'h1_joint', true)"><span class="check-box"></span>Joint letter from seller and buyer</label>
+        <label class="check-item" onclick="toggleCheck(this,'h1_seller_first', true)"><span class="check-box"></span>Seller sends letter alone first</label>
+        <label class="check-item" onclick="toggleCheck(this,'h1_inperson', true)"><span class="check-box"></span>In-person meetings with key clients</label>
+        <label class="check-item" onclick="toggleCheck(this,'h1_phased', true)"><span class="check-box"></span>Phased communication over 6–12 months</label>
+        <label class="check-item" onclick="toggleCheck(this,'h1_buyer_rec', true)"><span class="check-box"></span>Open to buyer's recommendation</label>
+      </div>
+    </div>
+    <div class="field"><label>Timing preference for first client communication</label><input type="text" data-key="h1_timing" placeholder="e.g. at signing, 3 months before close, etc."></div>
+    <div class="field"><label>Which clients (by category/tier, not name) require extra care during transition?</label><textarea data-key="h1_extra_care"></textarea></div>
+  </div>
+  <div class="section" id="h2">
+    <div class="section-title">H.2 Staff &amp; Team Transition</div>
+    <div class="field">
+      <label>What is your expectation for your staff post-transaction?</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'h2_all_ret', true)"><span class="check-box"></span>All staff retained — essential to deal</label>
+        <label class="check-item" onclick="toggleCheck(this,'h2_most_ret', true)"><span class="check-box"></span>Most staff retained</label>
+        <label class="check-item" onclick="toggleCheck(this,'h2_open', true)"><span class="check-box"></span>Open to buyer's assessment</label>
+        <label class="check-item" onclick="toggleCheck(this,'h2_aware', true)"><span class="check-box"></span>Staff aware of potential sale</label>
+        <label class="check-item" onclick="toggleCheck(this,'h2_conf', true)"><span class="check-box"></span>Staff not aware — confidentiality required</label>
+      </div>
+    </div>
+    <div class="field"><label>Are there any staff members who are critical to retain for a successful transition? Describe (no names).</label><textarea data-key="h2_critical_staff"></textarea></div>
+  </div>
+  <div class="section" id="h3">
+    <div class="section-title">H.3 Seller's Availability Post-Closing</div>
+    <table class="data-table">
+      <thead><tr><th>Transition Period</th><th>Seller Available?</th><th>Scope of Involvement</th></tr></thead>
+      <tbody>
+        <tr><td>Months 1–3 (Post-Close)</td><td><select data-key="h3_m13_avail"><option></option><option>Yes</option><option>No</option></select></td><td><input type="text" data-key="h3_m13_scope"></td></tr>
+        <tr><td>Months 4–6</td><td><select data-key="h3_m46_avail"><option></option><option>Yes</option><option>No</option></select></td><td><input type="text" data-key="h3_m46_scope"></td></tr>
+        <tr><td>Months 7–12</td><td><select data-key="h3_m712_avail"><option></option><option>Yes</option><option>No</option></select></td><td><input type="text" data-key="h3_m712_scope"></td></tr>
+        <tr><td>Year 2 and Beyond</td><td><select data-key="h3_y2_avail"><option></option><option>Yes</option><option>No</option></select></td><td><input type="text" data-key="h3_y2_scope"></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section" id="h4">
+    <div class="section-title">H.4 Technology &amp; Data Migration</div>
+    <div class="field">
+      <label>Are client files currently in electronic format?</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'h4_files_full', true)"><span class="check-box"></span>Yes — fully digital</label>
+        <label class="check-item" onclick="toggleCheck(this,'h4_files_mostly', true)"><span class="check-box"></span>Mostly digital, some paper</label>
+        <label class="check-item" onclick="toggleCheck(this,'h4_files_paper', true)"><span class="check-box"></span>Mostly paper — significant digitization needed</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Can your CRM data be exported for migration?</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'h4_crm_yes', true)"><span class="check-box"></span>Yes — standard export available</label>
+        <label class="check-item" onclick="toggleCheck(this,'h4_crm_partial', true)"><span class="check-box"></span>Partial — manual extraction needed</label>
+        <label class="check-item" onclick="toggleCheck(this,'h4_crm_unknown', true)"><span class="check-box"></span>Unknown — requires IT assessment</label>
+      </div>
+    </div>
+    <div class="field"><label>Are there any known technology or data migration challenges a buyer should know about?</label><textarea data-key="h4_challenges"></textarea></div>
+  </div>
+  <div class="section" id="h5">
+    <div class="section-title">H.5 Regulatory &amp; Compliance Transition</div>
+    <div class="field">
+      <label>Is your book of business transferable under your current dealer/MGA agreements?</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'h5_transfer_yes', true)"><span class="check-box"></span>Yes — standard transfer process</label>
+        <label class="check-item" onclick="toggleCheck(this,'h5_transfer_neg', true)"><span class="check-box"></span>Requires approval / negotiation</label>
+        <label class="check-item" onclick="toggleCheck(this,'h5_transfer_unk', true)"><span class="check-box"></span>Unknown — needs to be verified</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Are there any carrier agreements that would terminate upon a change of ownership?</label>
+      <div class="check-group">
+        <label class="check-item" onclick="toggleCheck(this,'h5_carrier_no', true)"><span class="check-box"></span>No known issues</label>
+        <label class="check-item" onclick="toggleCheck(this,'h5_carrier_yes', true)"><span class="check-box"></span>Yes — must be renegotiated</label>
+        <label class="check-item" onclick="toggleCheck(this,'h5_carrier_unk', true)"><span class="check-box"></span>Unknown</label>
+      </div>
+    </div>
+    <div class="field"><label>Describe any known regulatory hurdles, approval processes, or transfer restrictions.</label><textarea data-key="h5_hurdles"></textarea></div>
+  </div>
+  <div class="section" id="h6">
+    <div class="section-title"><span class="star">★</span> H.6 Key Risks the Buyer Should Know</div>
+    <div class="field"><label>What are the top 3 risks in your practice that a buyer should be aware of? <span class="required">★</span></label><textarea data-key="h6_top3_risks" style="min-height:90px"></textarea></div>
+    <div class="field"><label>Is there anything else — about your clients, staff, operations, or your personal situation — that a buyer should understand before making an offer?</label><textarea data-key="h6_anything_else" style="min-height:90px"></textarea></div>
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE I ═══════════════ -->
+<div class="module" id="modI">
+  <div class="module-header">
+    <div><div class="module-label">Module I</div><div class="module-title">Supporting Documents &amp; Completion Checklist</div></div>
+  </div>
+  <div class="section" id="i1">
+    <div class="section-title">I.1 Master Document Submission Checklist</div>
+    <div class="section-subtitle">Documents marked ★ are required to begin the valuation process.</div>
+    <table class="doc-table">
+      <thead><tr><th>Document</th><th style="width:100px;text-align:center">Submitted?</th><th style="width:240px">Date &amp; Time Submitted</th></tr></thead>
+      <tbody id="i1_docs"></tbody>
+    </table>
+  </div>
+  <div class="section" id="i2">
+    <div class="section-title">I.2 Questions or Notes for Queenston M&amp;A Inc.</div>
+    <div class="section-subtitle">Use the blocks below to write down any questions you have for our team — about the process, valuation, timeline, confidentiality, legal aspects, or anything else on your mind.</div>
+    <div id="i2_questions"></div>
+  </div>
+  <div class="section" id="i3">
+    <div class="section-title">I.3 Certification &amp; Signature</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.6;">By signing below, I/we certify that all information provided in this questionnaire is accurate and complete to the best of my/our knowledge, and that I/we have the authority to provide this information on behalf of the business. I/we understand that this document is strictly confidential and is provided to Queenston M&A Inc. solely for the purpose of evaluating a potential sale transaction.</p>
+    <div class="sig-grid">
+      <div class="sig-box">
+        <h4>Seller / Principal 1</h4>
+        <div class="sig-line"><label>Printed Name</label><input type="text" data-key="sig1_name"></div>
+        <div class="sig-line"><label>Title</label><input type="text" data-key="sig1_title"></div>
+        <div class="sig-line"><label>Date</label><input type="text" data-key="sig1_date" placeholder="YYYY-MM-DD"></div>
+      </div>
+      <div class="sig-box">
+        <h4>Seller / Principal 2</h4>
+        <div class="sig-line"><label>Printed Name</label><input type="text" data-key="sig2_name"></div>
+        <div class="sig-line"><label>Title</label><input type="text" data-key="sig2_title"></div>
+        <div class="sig-line"><label>Date</label><input type="text" data-key="sig2_date" placeholder="YYYY-MM-DD"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ APPENDIX K ═══════════════ -->
+<div class="module" id="modJ">
+  <div class="module-header">
+    <div><div class="module-label">Appendix J</div><div class="module-title">Prospects Not to Be Solicited</div></div>
+  </div>
+  <div class="section">
+    <table class="appendix-table">
+      <thead><tr><th style="width:40px">#</th><th>Firm / Company Name</th><th>Owner(s) / Principal Names</th></tr></thead>
+      <tbody id="appk_tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- end .main -->
+
+<div class="footer">
+  <span>QUEENSTON M&A INC.</span> &nbsp;·&nbsp; Mergers &amp; Acquisitions for Financial Services &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#9bf2f5fdf4dbeaeefefef5e8eff4f5b5f8fa"><span class="__cf_email__" data-cfemail="8ce5e2eae3ccfdf9e9e9e2fff8e3e2a2efed">[email&#160;protected]</span></a> &nbsp;·&nbsp; www.queenston.ca &nbsp;·&nbsp; Confidential — All Rights Reserved
+</div>
+
+<!-- RESET MODAL -->
+<div class="modal-overlay" id="resetModal">
+  <div class="modal">
+    <h3>Reinitiate Questionnaire</h3>
+    <p>This will permanently clear all entered data and reset the form for a new client. This action cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeResetModal()" style="color:var(--navy);border-color:var(--border);">Cancel</button>
+      <button class="btn btn-danger" onclick="resetAll()" style="background:var(--red);color:var(--white);border:none;">Yes, Clear Everything</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Progress auto-saved</div>
+
+<script>
+
+// ?? DATA STORE ????????????????????????????????????????????????????
+const STORAGE_KEY = 'queenston_sell_side_v1';
+let formData = {};
+let saveTimer = null;
+
+// ?? TIMESTAMP CHECKBOX ????????????????????????????????????????????
+function tsCheck(cb, dateInputId) {
+  const dateInput = document.getElementById(dateInputId);
+  if (!dateInput) return;
+  if (cb.checked) {
+    const now = new Date();
+    const stamp = now.toLocaleDateString('en-CA', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    }) + ' \u2014 ' + now.toLocaleTimeString('en-CA', {
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+    });
+    dateInput.value = stamp;
+    formData['ts_' + dateInputId] = stamp;
+    formData['tscb_' + cb.id] = true;
+  } else {
+    dateInput.value = '';
+    delete formData['ts_' + dateInputId];
+    delete formData['tscb_' + cb.id];
+  }
+  scheduleSave();
+}
+
+// ?? PREFIX INPUT HELPERS ??????????????????????????????????????????
+function mkCurrency(key) {
+  return `<div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="${key}" inputmode="numeric"></div>`;
+}
+function mkPercent(key) {
+  return `<div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="${key}" inputmode="numeric"></div>`;
+}
+
+// ?? BUILD ALL DYNAMIC CONTENT ?????????????????????????????????????
+function buildDynamicContent() {
+
+  // C.2 Services
+  const services = [
+    'Investment Advisory / Wealth Management','Mutual Funds','Exchange-Traded Funds (ETFs)',
+    'Segregated Funds','Securities / Equities (IIROC)','Portfolio Management',
+    'Life Insurance (Term & Permanent)','Disability Insurance','Critical Illness Insurance',
+    'Long-Term Care Insurance','Group Benefits (Employee Benefits)','Group Retirement (Pension / DPSP / RRSP)',
+    'Annuities','Estate Planning / Referrals','Mortgage Referrals','Financial Planning Fees','Other (specify)'
+  ];
+  const c2 = document.getElementById('c2_services');
+  if (c2) {
+    const totalC2 = services.length + 5;
+    for (let i = 0; i < totalC2; i++) {
+      const key = 'c2_' + i;
+      const lbl = i < services.length ? services[i] : '';
+      c2.innerHTML += `<tr>
+        <td><input type="text" class="editable-label" data-key="${key}_label" value="${lbl}" placeholder="Add service / product line\u2026"></td>
+        <td><div class="yn-toggle" id="yn_${key}_offered"><button class="yn-btn" onclick="setYN('${key}_offered','Yes',this)">Yes</button><button class="yn-btn" onclick="setYN('${key}_offered','No',this)">No</button></div></td>
+        <td>${mkPercent(key + '_pct')}</td>
+        <td><div class="yn-toggle" id="yn_${key}_recur"><button class="yn-btn" onclick="setYN('${key}_recur','Yes',this)">Yes</button><button class="yn-btn" onclick="setYN('${key}_recur','No',this)">No</button></div></td>
+        <td><div class="ts-date-cell"><input type="checkbox" class="ts-checkbox" id="tscb_c2_${i}" onchange="tsCheck(this,'tsdate_c2_${i}')"><input type="text" id="tsdate_c2_${i}" data-key="c2_${i}_date" class="ts-date-input" readonly placeholder="\u2014 Auto-stamp on check"></div></td>
+      </tr>`;
+    }
+  }
+
+  // D.6 Products
+  const products = [
+    'Mutual Funds','Exchange-Traded Funds (ETFs)','Segregated Funds','Securities / Equities',
+    'GICs / Fixed Income','Portfolio Management','Exempt Market (EMD)','Life Insurance (individual)',
+    'Disability Insurance','Critical Illness','Group Benefits','Group Retirement / Pension','Other'
+  ];
+  const d6 = document.getElementById('d6_products');
+  if (d6) {
+    const totalD6 = products.length + 5;
+    for (let i = 0; i < totalD6; i++) {
+      const lbl = i < products.length ? products[i] : '';
+      d6.innerHTML += `<tr>
+        <td><input type="text" class="editable-label" data-key="d6_${i}_label" value="${lbl}" placeholder="Add product / asset class\u2026"></td>
+        <td>${mkCurrency('d6_' + i + '_aum')}</td>
+        <td>${mkPercent('d6_' + i + '_pct')}</td>
+        <td><input type="text" data-key="d6_${i}_company" placeholder="Company name"></td>
+        <td><div class="ts-date-cell"><input type="checkbox" class="ts-checkbox" id="tscb_d6_${i}" onchange="tsCheck(this,'tsdate_d6_${i}')"><input type="text" id="tsdate_d6_${i}" data-key="d6_r${i}_date" class="ts-date-input" readonly placeholder="\u2014 Auto-stamp on check"></div></td>
+      </tr>`;
+    }
+  }
+
+  // E.1 Revenue
+  const revLines = [
+    'Trailing Commissions / Renewal Income','Upfront / Transactional Commissions',
+    'Fee-Based Revenue (% AUM)','Insurance Premiums \u2014 New','Insurance Premiums \u2014 Renewals',
+    'Group Benefits / Pensions','Financial Planning Fees','Other Revenue','TOTAL GROSS REVENUE'
+  ];
+  const e1 = document.getElementById('e1_table');
+  if (e1) {
+    e1.innerHTML = `<thead><tr><th>Revenue Line</th><th>Year -4</th><th>Year -3</th><th>Year -2</th><th>Year -1</th><th>Current/Last FY</th></tr></thead><tbody>` +
+      revLines.map((r, i) => `<tr><td>${r}</td>${[4,3,2,1,0].map(y => `<td>${mkCurrency('e1_r' + i + '_y' + y)}</td>`).join('')}</tr>`).join('') + '</tbody>';
+  }
+
+  // E.3 Expenses
+  const expLines = [
+    'Salaries & Benefits (non-owner)','Owner Compensation (all forms)','Rent / Office Costs',
+    'Back-Office / Technology','Marketing & Events','E&O Insurance','Professional Fees (Acct., Legal)',
+    'Travel & Entertainment','Other Operating Expenses','TOTAL OPERATING EXPENSES'
+  ];
+  const e3 = document.getElementById('e3_table');
+  if (e3) {
+    e3.innerHTML = `<thead><tr><th>Expense Category</th><th>Year -4</th><th>Year -3</th><th>Year -2</th><th>Year -1</th><th>Current/Last FY</th></tr></thead><tbody>` +
+      expLines.map((r, i) => `<tr><td>${r}</td>${[4,3,2,1,0].map(y => `<td>${mkCurrency('e3_r' + i + '_y' + y)}</td>`).join('')}</tr>`).join('') + '</tbody>';
+  }
+
+  // E.6 Docs
+  const e6docs = [
+    {req:true,  doc:'Last 5 years T2 Corporate Income Tax Returns (or T2125 if self-employed)'},
+    {req:true,  doc:'Last 5 years Year-End Financial Statements (Balance Sheet & P&L)'},
+    {req:true,  doc:'Last 3 years AUM Dashboard Reports from Dealer / MGA'},
+    {req:true,  doc:'Last 3 years Production Reports (insurance)'},
+    {req:true,  doc:'YTD Financial Statements (current year)'},
+    {req:false, doc:'Last 3 years personal income tax returns (T1 General)'},
+    {req:false, doc:'List of recurring revenue contracts (dealer / MGA agreements)'},
+    {req:false, doc:'Shareholder or partnership agreement'},
+  ];
+  const e6 = document.getElementById('e6_docs');
+  if (e6) {
+    const totalE6 = e6docs.length + 4;
+    for (let i = 0; i < totalE6; i++) {
+      const d = i < e6docs.length ? e6docs[i] : {req:false, doc:''};
+      const star = d.req ? '<span class="required-star" style="flex-shrink:0">&#9733;</span>' : '';
+      e6.innerHTML += `<tr>
+        <td class="doc-name">${star}<input type="text" class="editable-label" data-key="e6_${i}_label" value="${d.doc}" placeholder="Add document\u2026" style="flex:1"></td>
+        <td><div class="yn-toggle" id="yn_e6_${i}_can"><button class="yn-btn" onclick="setYN('e6_${i}_can','Yes',this)">Yes</button><button class="yn-btn" onclick="setYN('e6_${i}_can','No',this)">No</button></div></td>
+        <td><div class="ts-date-cell"><input type="checkbox" class="ts-checkbox" id="tscb_e6_${i}" onchange="tsCheck(this,'tsdate_e6_${i}')"><input type="text" id="tsdate_e6_${i}" data-key="e6_${i}_att_date" class="ts-date-input" readonly placeholder="\u2014 Auto-filled on check"></div></td>
+      </tr>`;
+    }
+  }
+
+  // F.1 Employees
+  const f1 = document.getElementById('f1_tbody');
+  if (f1) {
+    for (let i = 0; i < 10; i++) {
+      f1.innerHTML += `<tr>
+        <td><input type="text" data-key="f1_r${i}_role" placeholder="Role / title"></td>
+        <td><input type="text" data-key="f1_r${i}_hire" placeholder="MM/YYYY"></td>
+        <td><input type="text" data-key="f1_r${i}_age" placeholder="#"></td>
+        <td>${mkCurrency('f1_r' + i + '_salary')}</td>
+        <td>${mkCurrency('f1_r' + i + '_bonus')}</td>
+        <td><select data-key="f1_r${i}_ftpt"><option></option><option>FT</option><option>PT</option></select></td>
+        <td><select data-key="f1_r${i}_lic"><option></option><option>Y</option><option>N</option></select></td>
+        <td><input type="text" data-key="f1_r${i}_loc" placeholder="Location"></td>
+        <td><div class="ts-date-cell"><input type="checkbox" class="ts-checkbox" id="tscb_f1_${i}" onchange="tsCheck(this,'tsdate_f1_${i}')"><input type="text" id="tsdate_f1_${i}" data-key="f1_r${i}_date" class="ts-date-input" readonly placeholder="\u2014 Auto-stamp"></div></td>
+      </tr>`;
+    }
+  }
+
+  // G.1 Tech Stack
+  const techCats = [
+    'Portfolio Management / Back-Office','CRM (Client Relationship Mgmt)',
+    'Financial Planning Software','Document Management / e-Signing','Client Portal',
+    'Cybersecurity / Password Mgmt','Compliance Monitoring','Communication / Email Platform',
+    'Video / Virtual Meeting Tools','Practice Management / Workflow'
+  ];
+  const g1 = document.getElementById('g1_tech');
+  if (g1) {
+    const totalG1 = techCats.length + 4;
+    for (let i = 0; i < totalG1; i++) {
+      const lbl = i < techCats.length ? techCats[i] : '';
+      g1.innerHTML += `<tr>
+        <td><input type="text" class="editable-label" data-key="g1_r${i}_cat" value="${lbl}" placeholder="Add system category\u2026"></td>
+        <td><input type="text" data-key="g1_r${i}_platform" placeholder="Software / platform name"></td>
+        <td><input type="text" data-key="g1_r${i}_notes" placeholder="Notes\u2026"></td>
+        <td><div class="ts-date-cell"><input type="checkbox" class="ts-checkbox" id="tscb_g1_${i}" onchange="tsCheck(this,'tsdate_g1_${i}')"><input type="text" id="tsdate_g1_${i}" data-key="g1_r${i}_date" class="ts-date-input" readonly placeholder="\u2014 Auto-stamp on check"></div></td>
+      </tr>`;
+    }
+  }
+
+  // G.3 Carriers
+  const g3 = document.getElementById('g3_carriers');
+  if (g3) {
+    for (let i = 0; i < 12; i++) {
+      g3.innerHTML += `<tr>
+        <td><input type="text" data-key="g3_r${i}_name" placeholder="Company / carrier name"></td>
+        <td>${mkPercent('g3_r' + i + '_pct')}</td>
+        <td><select data-key="g3_r${i}_type"><option></option><option>Investment</option><option>Insurance</option><option>Both</option></select></td>
+        <td><div class="ts-date-cell"><input type="checkbox" class="ts-checkbox" id="tscb_g3_${i}" onchange="tsCheck(this,'tsdate_g3_${i}')"><input type="text" id="tsdate_g3_${i}" data-key="g3_r${i}_date" class="ts-date-input" readonly placeholder="\u2014 Auto-stamp on check"></div></td>
+      </tr>`;
+    }
+  }
+
+  // I.1 Master Document Checklist
+  const i1docs = [
+    {req:true,  doc:'Signed Engagement Letter / NDA with Queenston'},
+    {req:true,  doc:'Last 5 Years T2 Corporate Tax Returns (or T2125)'},
+    {req:true,  doc:'Last 5 Years Financial Statements (Balance Sheet & Income Statement)'},
+    {req:true,  doc:'Last 3 Years AUM Dashboard from Dealer'},
+    {req:true,  doc:'Last 3 Years Production / Premium Reports from MGA'},
+    {req:true,  doc:'Current YTD Financial Statements'},
+    {req:false, doc:'Signed NDA from prospective buyers (provided by Queenston)'},
+    {req:false, doc:'Corporate structure chart / shareholder register'},
+    {req:false, doc:'All existing employment contracts'},
+    {req:false, doc:'All existing carrier/dealer agreements'},
+    {req:false, doc:'Sample client service agreement / onboarding forms'},
+    {req:false, doc:'List of office leases / occupancy agreements'},
+    {req:false, doc:'List of software subscriptions and technology agreements'},
+    {req:false, doc:'E&O insurance certificate (current)'},
+    {req:false, doc:'Any pending or past compliance/regulatory notices'},
+    {req:false, doc:'Any existing LOIs, purchase agreements, or prior offers'},
+  ];
+  const i1 = document.getElementById('i1_docs');
+  if (i1) {
+    const totalI1 = i1docs.length + 5;
+    for (let i = 0; i < totalI1; i++) {
+      const d = i < i1docs.length ? i1docs[i] : {req:false, doc:''};
+      const star = d.req
+        ? '<span class="required-star" style="flex-shrink:0">&#9733;</span>'
+        : '<span style="display:inline-block;width:14px;flex-shrink:0"></span>';
+      i1.innerHTML += `<tr>
+        <td class="doc-name">${star}<input type="text" class="editable-label" data-key="i1_${i}_label" value="${d.doc}" placeholder="Add document name\u2026" style="flex:1"></td>
+        <td style="text-align:center"><div class="ts-check-wrap"><input type="checkbox" class="ts-checkbox" id="tscb_i1_${i}" onchange="tsCheck(this,'tsdate_i1_${i}')"></div></td>
+        <td><div class="ts-date-cell"><input type="text" id="tsdate_i1_${i}" data-key="i1_${i}_date" class="ts-date-input" readonly placeholder="\u2014 Auto-filled on check"></div></td>
+      </tr>`;
+    }
+  }
+
+  // I.2 Questions
+  const i2 = document.getElementById('i2_questions');
+  if (i2) {
+    for (let i = 1; i <= 10; i++) {
+      i2.innerHTML += `<div class="question-block"><label>Question / Note ${i}</label><textarea data-key="i2_q${i}" style="min-height:64px"></textarea></div>`;
+    }
+  }
+
+  // Appendix J
+  const appk = document.getElementById('appk_tbody');
+  if (appk) {
+    for (let i = 0; i < 12; i++) {
+      appk.innerHTML += `<tr>
+        <td style="text-align:center;color:var(--text-muted);font-size:12px;width:40px">${i + 1}</td>
+        <td><input type="text" data-key="appj_r${i}_firm" placeholder="Company / firm name"></td>
+        <td><input type="text" data-key="appj_r${i}_owner" placeholder="Owner(s) / principal name(s)"></td>
+      </tr>`;
+    }
+  }
+
+  // Build all scale buttons (1?7)
+  const scaleIds = [
+    'b2_1','b2_2','b2_3','b2_4','b2_5',
+    'b6_1','b6_2','b6_3','b6_4','b6_5','b6_6',
+    'b7_1','b7_2','b7_3','b7_4','b7_5','b7_6',
+    'b8_1','b8_2','b8_3','b8_4','b8_5'
+  ];
+  scaleIds.forEach(id => buildScale('scale_' + id));
+
+} // end buildDynamicContent
+
+// ?? SCALE BUTTONS ?????????????????????????????????????????????????
+function buildScale(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = '';
+  for (let v = 1; v <= 7; v++) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'scale-btn';
+    btn.textContent = v;
+    btn.onclick = () => {
+      el.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      formData[containerId] = v;
+      scheduleSave();
+    };
+    el.appendChild(btn);
+  }
+}
+
+// ?? CHECKBOX TOGGLE ???????????????????????????????????????????????
+function toggleCheck(el, key, radio) {
+  if (radio) {
+    const group = el.closest('.check-group');
+    if (group) group.querySelectorAll('.check-item').forEach(ci => {
+      ci.classList.remove('checked');
+      const m = ci.getAttribute('onclick').match(/'([^']+)'/g);
+      if (m && m[0]) formData[m[0].replace(/'/g, '')] = false;
+    });
+    el.classList.add('checked');
+    formData[key] = true;
+  } else {
+    el.classList.toggle('checked');
+    formData[key] = el.classList.contains('checked');
+  }
+  scheduleSave();
+}
+
+// ?? YES/NO TOGGLE ?????????????????????????????????????????????????
+function setYN(key, val, btn) {
+  const wrap = btn.parentElement;
+  wrap.querySelectorAll('.yn-btn').forEach(b => b.classList.remove('active-yes', 'active-no'));
+  btn.classList.add(val === 'Yes' ? 'active-yes' : 'active-no');
+  formData[key] = val;
+  scheduleSave();
+}
+
+// ?? SAVE & LOAD ???????????????????????????????????????????????????
+function scheduleSave() {
+  const status = document.getElementById('saveStatus');
+  if (status) { status.textContent = '\u29f3 Saving\u2026'; status.className = 'save-status saving'; }
+  if (saveTimer) clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 800);
+}
+
+function saveNow() {
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.dataset.key;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') formData[key] = el.value;
+    else if (el.tagName === 'SELECT') formData[key] = el.value;
+  });
+  document.querySelectorAll('.ts-checkbox').forEach(cb => {
+    formData['tscb_' + cb.id] = cb.checked;
+  });
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+    const status = document.getElementById('saveStatus');
+    if (status) { status.textContent = '\u2713 Saved ' + new Date().toLocaleTimeString(); status.className = 'save-status saved'; }
+    showToast();
+  } catch(e) { console.warn('Storage unavailable', e); }
+}
+
+function loadSaved() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    formData = JSON.parse(raw);
+    Object.entries(formData).forEach(([key, val]) => {
+      const el = document.querySelector(`[data-key="${key}"]`);
+      if (el) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.value = val;
+        else if (el.tagName === 'SELECT') el.value = val;
+      }
+      // Restore check-items
+      const checkEl = document.querySelector(`[onclick*="${key}"]`);
+      if (checkEl && val === true) checkEl.classList.add('checked');
+      // Restore scale buttons
+      if (key.startsWith('scale_')) {
+        const container = document.getElementById(key);
+        if (container) container.querySelectorAll('.scale-btn').forEach(btn => {
+          btn.classList.toggle('active', parseInt(btn.textContent) === val);
+        });
+      }
+      // Restore YN buttons
+      if (val === 'Yes' || val === 'No') {
+        const ynWrap = document.getElementById('yn_' + key);
+        if (ynWrap) ynWrap.querySelectorAll('.yn-btn').forEach(b => {
+          b.classList.remove('active-yes', 'active-no');
+          if (b.textContent === val) b.classList.add(val === 'Yes' ? 'active-yes' : 'active-no');
+        });
+      }
+      // Restore ts checkboxes
+      if (key.startsWith('tscb_')) {
+        const cb = document.getElementById(key.replace('tscb_', ''));
+        if (cb && val === true) cb.checked = true;
+      }
+      // Restore ts date stamps
+      if (key.startsWith('ts_')) {
+        const inp = document.getElementById(key.replace('ts_', ''));
+        if (inp) inp.value = val;
+      }
+    });
+    const status = document.getElementById('saveStatus');
+    if (status) { status.textContent = '\u2713 Data restored'; status.className = 'save-status saved'; }
+  } catch(e) { console.warn('Could not load saved data', e); }
+}
+
+// ?? AUTO-SAVE ON INPUT ????????????????????????????????????????????
+document.addEventListener('input', e => {
+  if (e.target.dataset.key) { formData[e.target.dataset.key] = e.target.value; scheduleSave(); }
+});
+document.addEventListener('change', e => {
+  if (e.target.dataset.key) { formData[e.target.dataset.key] = e.target.value; scheduleSave(); }
+});
+
+// ?? PROGRESS BAR ??????????????????????????????????????????????????
+function updateProgress() {
+  const all = document.querySelectorAll('input[data-key], textarea[data-key], select[data-key]');
+  let filled = 0;
+  all.forEach(el => { if (el.value && el.value.trim()) filled++; });
+  const pct = Math.round((filled / all.length) * 100);
+  const bar = document.getElementById('progressFill');
+  if (bar) bar.style.width = pct + '%';
+}
+document.addEventListener('input', updateProgress);
+document.addEventListener('change', updateProgress);
+
+// ?? RESET ?????????????????????????????????????????????????????????
+function openResetModal() { document.getElementById('resetModal').classList.add('open'); }
+function closeResetModal() { document.getElementById('resetModal').classList.remove('open'); }
+function resetAll() {
+  localStorage.removeItem(STORAGE_KEY);
+  formData = {};
+  document.querySelectorAll('[data-key]').forEach(el => {
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.value = '';
+    else if (el.tagName === 'SELECT') el.selectedIndex = 0;
+  });
+  document.querySelectorAll('.ts-checkbox').forEach(cb => cb.checked = false);
+  document.querySelectorAll('.ts-date-input').forEach(inp => inp.value = '');
+  document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
+  document.querySelectorAll('.scale-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.yn-btn').forEach(btn => btn.classList.remove('active-yes', 'active-no'));
+  const bar = document.getElementById('progressFill');
+  if (bar) bar.style.width = '0%';
+  const status = document.getElementById('saveStatus');
+  if (status) { status.textContent = '\u25cf Form reset \u2014 ready for new client'; status.className = 'save-status'; }
+  closeResetModal();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ?? PRINT PDF ?????????????????????????????????????????????????????
+function printPDF() {
+  saveNow();
+  const tip = document.createElement('div');
+  tip.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#0D1B2A;color:#fff;padding:24px 32px;z-index:9999;font-family:DM Sans,sans-serif;font-size:14px;text-align:center;border-top:3px solid #C9A84C;box-shadow:0 8px 40px rgba(0,0,0,0.4);max-width:380px;line-height:1.7;';
+  tip.innerHTML = '<strong style="color:#C9A84C;font-size:15px">Print Tips for Best PDF</strong><br><br>\u2705 Set <strong>Destination</strong> to <em>Save as PDF</em><br>\u2705 Enable <strong>Background graphics</strong><br>\u2705 Set <strong>Margins</strong> to <em>None</em> or <em>Minimum</em><br>\u2705 Paper: <strong>Letter</strong> or <strong>A4</strong><br><br><button onclick=\'this.parentElement.remove();window.print()\' style=\'background:#C9A84C;border:none;color:#0D1B2A;padding:10px 24px;font-weight:700;font-family:DM Sans,sans-serif;cursor:pointer;font-size:13px;margin-right:8px\'>Print Now</button><button onclick=\'this.parentElement.remove()\' style=\'background:transparent;border:1px solid rgba(255,255,255,0.3);color:#fff;padding:10px 18px;font-family:DM Sans,sans-serif;cursor:pointer;font-size:13px\'>Cancel</button>';
+  document.body.appendChild(tip);
+}
+
+function exportData() {
+  saveNow();
+  const blob = new Blob([JSON.stringify(formData, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'queenston_questionnaire_' + new Date().toISOString().slice(0, 10) + '.json';
+  a.click();
+}
+
+// ?? TOAST ?????????????????????????????????????????????????????????
+let toastTimer;
+function showToast() {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ?? INIT ???????????????????????????
+// ?? INIT ??????????????????????????????????????????????????????????
+document.addEventListener('DOMContentLoaded', () => {
+  buildDynamicContent();
+  loadSaved();
+  updateProgress();
+});
+</script>
+</body>
+</html>
