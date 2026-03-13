@@ -1961,6 +1961,13 @@ if (fileNo) {
   const el = document.body.innerHTML;
   document.body.innerHTML = el.replace("QMA-2025-XXX", fileNo);
 }
+
+/* prevent editing shortcuts */
+document.addEventListener("keydown", function(e) {
+  if ((e.ctrlKey || e.metaKey) && ["e","u","s"].includes(e.key.toLowerCase())) {
+    e.preventDefault();
+  }
+});
 </script>
 </body>
 </html>
