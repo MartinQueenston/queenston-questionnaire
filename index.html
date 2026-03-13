@@ -1953,5 +1953,14 @@ document.addEventListener('DOMContentLoaded', () => {
   updateProgress();
 });
 </script>
+  <script>
+const params = new URLSearchParams(window.location.search);
+const fileNo = params.get("file");
+
+if (fileNo) {
+  const el = document.body.innerHTML;
+  document.body.innerHTML = el.replace("QMA-2025-XXX", fileNo);
+}
+</script>
 </body>
 </html>
