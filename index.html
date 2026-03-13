@@ -1954,16 +1954,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
   <script>
-const params = new URLSearchParams(window.location.search);
-const fileNo = params.get("file");
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+  const fileNo = params.get("file");
 
-if (fileNo) {
-  const input = document.getElementById("header_fileno");
-  if (input) {
-    input.value = fileNo;
-    input.readOnly = true; // lock the field
+  if (fileNo) {
+    const input = document.getElementById("header_fileno");
+    if (input) {
+      input.value = fileNo;
+      input.readOnly = true;
+    }
   }
-}
+});
+</script>
 
 /* prevent editing shortcuts */
 document.addEventListener("keydown", function(e) {
