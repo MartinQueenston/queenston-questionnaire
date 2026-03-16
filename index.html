@@ -1561,6 +1561,33 @@ async function loadFromSupabase(fileNo) {
   });
 
 }
+async function loadFromSupabaseToken(token) {
+
+    const { data, error } = await supabaseClient
+        .from("queenston_questionnaire")
+        .select("*")
+        .eq("token", token)
+        .single();
+
+    if (error) {
+        console.error("Token load error:", error);
+        return;
+    }
+
+    if (!data) return;
+
+    const fileInput = document.getElementById("header_fileno");
+    fileInput.value = data.client_id;
+
+    formData = data.form_data || {};
+
+    Object.entries(formData).forEach(([key, val]) => {
+        const el = document.querySelector(`[data-key="${key}"]`);
+        if (el) el.value = val;
+    });
+
+    console.log("Loaded questionnaire via token");
+}
 let formData = {};
 let saveTimer = null;
 
@@ -2001,6 +2028,14 @@ function showToast() {
 // ?? INIT ???????????????????????????
 // ?? INIT ??????????????????????????????????????????????????????????
 document.addEventListener('DOMContentLoaded', () => {
+
+  const params = new URLSearchParams(window.location.search);
+const token = params.get("token");
+
+if (token) {
+    loadFromSupabaseToken(token);
+}
+
   buildDynamicContent();
   updateProgress();
 
