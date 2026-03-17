@@ -1888,7 +1888,7 @@ function scheduleSave() {
   const status = document.getElementById('saveStatus');
   if (status) { status.textContent = '\u29f3 Saving\u2026'; status.className = 'save-status saving'; }
   if (saveTimer) clearTimeout(saveTimer);
-  saveTimer = setTimeout(saveNow, 800);
+  saveTimer = setTimeout(saveNow, 2000);
 }
 
 function saveNow() {
