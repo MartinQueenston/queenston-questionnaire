@@ -440,6 +440,33 @@
   .data-table td > input.editable-label::placeholder,
   .doc-table td > input.editable-label::placeholder,
   .doc-table .doc-name-content > input.editable-label::placeholder { color: var(--text-muted); font-style: italic; }
+
+  /* -- PERCENTAGE COLUMN TOTAL ROW (live, green at 100%, red over) -- */
+  .pct-total-row td {
+    background: var(--cream-dark) !important;
+    border-top: 2px solid var(--navy-mid);
+    font-weight: 600; color: var(--text);
+    padding: 8px 10px;
+  }
+  .pct-total { font-variant-numeric: tabular-nums; }
+  .pct-total.pct-total-full { color: var(--green); }
+  .pct-total.pct-total-over { color: #B8392F; }
+
+  /* -- AUTO-CALCULATED $ TOTAL (read-only, computed) -- */
+  .calc-total-row td {
+    background: var(--cream-dark) !important;
+    border-top: 2px solid var(--navy-mid);
+    font-weight: 600; color: var(--text);
+  }
+  .input-prefix-wrap.calc-total-wrap {
+    background: var(--cream-dark);
+    border-color: var(--navy-mid);
+  }
+  .calc-total-input {
+    font-weight: 600 !important;
+    cursor: not-allowed !important;
+    font-variant-numeric: tabular-nums;
+  }
 </style>
 </head>
 <body>
@@ -758,6 +785,17 @@
         </td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr class="pct-total-row">
+        <td><strong>Total</strong></td>
+        <td></td>
+        <td></td>
+        <td><span class="pct-total" id="a2_total_own">0%</span></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tfoot>
   </table>
 </div>
 
@@ -808,7 +846,7 @@
 
     <div class="field">
       <label data-translate="a3_backoffice_fees_label">Back-Office Annual Fees ($)</label>
-      <input type="text" data-key="a3_backoffice_fees">
+      <div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" class="currency-input" data-key="a3_backoffice_fees" inputmode="numeric"></div>
     </div>
 
     <div class="field">
@@ -1430,9 +1468,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td><input type="text" data-key="c4_r1_city"></td><td><input type="text" data-key="c4_r1_prov"></td><td><select data-key="c4_r1_tenure"><option></option><option data-translate="c4_owned">Owned</option><option data-translate="c4_leased">Leased</option></select></td><td><input type="text" data-key="c4_r1_cost"></td><td><input type="text" data-key="c4_r1_expiry"></td></tr>
-        <tr><td><input type="text" data-key="c4_r2_city"></td><td><input type="text" data-key="c4_r2_prov"></td><td><select data-key="c4_r2_tenure"><option></option><option data-translate="c4_owned">Owned</option><option data-translate="c4_leased">Leased</option></select></td><td><input type="text" data-key="c4_r2_cost"></td><td><input type="text" data-key="c4_r2_expiry"></td></tr>
-        <tr><td><input type="text" data-key="c4_r3_city"></td><td><input type="text" data-key="c4_r3_prov"></td><td><select data-key="c4_r3_tenure"><option></option><option data-translate="c4_owned">Owned</option><option data-translate="c4_leased">Leased</option></select></td><td><input type="text" data-key="c4_r3_cost"></td><td><input type="text" data-key="c4_r3_expiry"></td></tr>
+        <tr><td><input type="text" data-key="c4_r1_city"></td><td><input type="text" data-key="c4_r1_prov"></td><td><select data-key="c4_r1_tenure"><option></option><option data-translate="c4_owned">Owned</option><option data-translate="c4_leased">Leased</option></select></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" class="currency-input" data-key="c4_r1_cost" inputmode="numeric"></div></td><td><input type="text" data-key="c4_r1_expiry"></td></tr>
+        <tr><td><input type="text" data-key="c4_r2_city"></td><td><input type="text" data-key="c4_r2_prov"></td><td><select data-key="c4_r2_tenure"><option></option><option data-translate="c4_owned">Owned</option><option data-translate="c4_leased">Leased</option></select></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" class="currency-input" data-key="c4_r2_cost" inputmode="numeric"></div></td><td><input type="text" data-key="c4_r2_expiry"></td></tr>
+        <tr><td><input type="text" data-key="c4_r3_city"></td><td><input type="text" data-key="c4_r3_prov"></td><td><select data-key="c4_r3_tenure"><option></option><option data-translate="c4_owned">Owned</option><option data-translate="c4_leased">Leased</option></select></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" class="currency-input" data-key="c4_r3_cost" inputmode="numeric"></div></td><td><input type="text" data-key="c4_r3_expiry"></td></tr>
       </tbody>
     </table>
   </div>
@@ -1513,10 +1551,10 @@
         <td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d2_80_aum" inputmode="numeric"></div></td>
         <td><input type="text" data-key="d2_80_notes"></td>
       </tr>
-      <tr>
+      <tr class="pct-total-row">
         <td><strong data-translate="d2_total">TOTAL</strong></td>
-        <td>100%</td>
-        <td>100%</td>
+        <td><span class="pct-total" id="d2_total_hh">0%</span></td>
+        <td><span class="pct-total" id="d2_total_aum">0%</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1566,6 +1604,14 @@
         <td><input type="text" data-key="d3_top100_age"></td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr class="pct-total-row">
+        <td><strong>Total</strong></td>
+        <td></td>
+        <td><span class="pct-total" id="d3_total_pct">0%</span></td>
+        <td></td>
+      </tr>
+    </tfoot>
   </table>
 </div>
 
@@ -1665,10 +1711,10 @@
         <td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="d5_other_aum" inputmode="numeric"></div></td>
         <td><input type="text" data-key="d5_other_notes"></td>
       </tr>
-      <tr>
+      <tr class="pct-total-row">
         <td><strong data-translate="d5_total">TOTAL</strong></td>
-        <td>100%</td>
-        <td>100%</td>
+        <td><span class="pct-total" id="d5_total_hh">0%</span></td>
+        <td><span class="pct-total" id="d5_total_aum">0%</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1738,6 +1784,13 @@
         <td><input type="text" data-key="d7_other_notes"></td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr class="pct-total-row">
+        <td><strong>Total</strong></td>
+        <td><span class="pct-total" id="d7_total_pct">0%</span></td>
+        <td></td>
+      </tr>
+    </tfoot>
   </table>
 </div>
 </div>
@@ -1777,10 +1830,10 @@
           <td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="e2_trans_pct" inputmode="numeric"></div></td>
           <td><input type="text" data-key="e2_trans_notes"></td>
         </tr>
-        <tr>
+        <tr class="calc-total-row">
           <td><strong data-translate="e2_total">TOTAL</strong></td>
           <td><div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="e2_total_amt" inputmode="numeric"></div></td>
-          <td>100%</td>
+          <td><span class="pct-total" id="e2_total_pct">0%</span></td>
           <td></td>
         </tr>
       </tbody>
@@ -1917,6 +1970,15 @@
         <tr><td><input type="text" data-key="f2_r2_role"></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="f2_r2_pct" inputmode="numeric"></div></td><td><input type="text" data-key="f2_r2_since" placeholder="MM/YYYY"></td><td><select data-key="f2_r2_lic"><option></option><option>Y</option><option>N</option></select></td><td><select data-key="f2_r2_agree"><option></option><option>Y</option><option>N</option></select></td></tr>
         <tr><td><input type="text" data-key="f2_r3_role"></td><td><div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="f2_r3_pct" inputmode="numeric"></div></td><td><input type="text" data-key="f2_r3_since" placeholder="MM/YYYY"></td><td><select data-key="f2_r3_lic"><option></option><option>Y</option><option>N</option></select></td><td><select data-key="f2_r3_agree"><option></option><option>Y</option><option>N</option></select></td></tr>
       </tbody>
+      <tfoot>
+        <tr class="pct-total-row">
+          <td><strong>Total</strong></td>
+          <td><span class="pct-total" id="f2_total_rev">0%</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 
@@ -2325,10 +2387,8 @@ async function loadFromSupabase(fileNo) {
 
   formData = data.form_data || {};
 
-  Object.entries(formData).forEach(([key, val]) => {
-    const el = document.querySelector(`[data-key="${key}"]`);
-    if (el) el.value = val;
-  });
+  applyFormDataToDOM();
+  setSaveStatus('restored');
 
 }
 async function loadFromSupabaseToken(token) {
@@ -2351,16 +2411,15 @@ async function loadFromSupabaseToken(token) {
 
     formData = data.form_data || {};
 
-    Object.entries(formData).forEach(([key, val]) => {
-        const el = document.querySelector(`[data-key="${key}"]`);
-        if (el) el.value = val;
-    });
+    applyFormDataToDOM();
+    setSaveStatus('restored');
 
     console.log("Loaded questionnaire via token");
 }
 let formData = {};
 let currentLanguage = 'en';
 let saveTimer = null;
+let suppressAutosave = true;
 
 // ?? TIMESTAMP CHECKBOX ????????????????????????????????????????????
 function getTimestampLocale(lang = currentLanguage) {
@@ -2422,7 +2481,7 @@ function tsCheck(cb, dateInputId) {
 
 // ?? PREFIX INPUT HELPERS ??????????????????????????????????????????
 function mkCurrency(key) {
-  return `<div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" data-key="${key}" inputmode="numeric"></div>`;
+  return `<div class="input-prefix-wrap"><span class="input-prefix-symbol">$</span><input type="text" class="currency-input" data-key="${key}" inputmode="numeric"></div>`;
 }
 function mkPercent(key) {
   return `<div class="input-prefix-wrap"><span class="input-prefix-symbol">%</span><input type="text" data-key="${key}" inputmode="numeric"></div>`;
@@ -2488,7 +2547,7 @@ function renderFinancialTables(lang) {
     const e1YearKeys = ['e1_year_4', 'e1_year_3', 'e1_year_2', 'e1_year_1', 'e1_year_current'];
     e1.innerHTML =
       `<thead><tr><th>${t(lang, 'e1_col_line')}</th>${e1YearKeys.map(key => `<th>${t(lang, key)}</th>`).join('')}</tr></thead><tbody>` +
-      e1Rows.map((key, i) => `<tr><td>${t(lang, key)}</td>${[4,3,2,1,0].map(y => `<td>${mkCurrency('e1_r' + i + '_y' + y)}</td>`).join('')}</tr>`).join('') +
+      e1Rows.map((key, i) => `<tr${i === e1Rows.length - 1 ? ' class="calc-total-row"' : ''}><td>${t(lang, key)}</td>${[4,3,2,1,0].map(y => `<td>${mkCurrency('e1_r' + i + '_y' + y)}</td>`).join('')}</tr>`).join('') +
       '</tbody>';
   }
 
@@ -2502,7 +2561,7 @@ function renderFinancialTables(lang) {
     const e3YearKeys = ['e3_year_4', 'e3_year_3', 'e3_year_2', 'e3_year_1', 'e3_year_current'];
     e3.innerHTML =
       `<thead><tr><th>${t(lang, 'e3_col_category')}</th>${e3YearKeys.map(key => `<th>${t(lang, key)}</th>`).join('')}</tr></thead><tbody>` +
-      e3Rows.map((key, i) => `<tr><td>${t(lang, key)}</td>${[4,3,2,1,0].map(y => `<td>${mkCurrency('e3_r' + i + '_y' + y)}</td>`).join('')}</tr>`).join('') +
+      e3Rows.map((key, i) => `<tr${i === e3Rows.length - 1 ? ' class="calc-total-row"' : ''}><td>${t(lang, key)}</td>${[4,3,2,1,0].map(y => `<td>${mkCurrency('e3_r' + i + '_y' + y)}</td>`).join('')}</tr>`).join('') +
       '</tbody>';
   }
 }
@@ -2615,6 +2674,15 @@ if (c2) {
       </div></td>
     </tr>`;
   }
+
+  // C.2 live "% of Revenue" total row
+  c2.innerHTML += `<tr class="pct-total-row">
+    <td><strong>Total</strong></td>
+    <td></td>
+    <td><span class="pct-total" id="c2_total_pct">0%</span></td>
+    <td></td>
+    <td></td>
+  </tr>`;
 }
 
   // D.6 Products
@@ -2635,6 +2703,15 @@ if (c2) {
         <td><div class="ts-date-cell"><input type="checkbox" class="ts-checkbox" id="tscb_d6_${i}" onchange="tsCheck(this,'tsdate_d6_${i}')"><input type="text" id="tsdate_d6_${i}" data-key="d6_r${i}_date" class="ts-date-input" readonly placeholder="\u2014 Auto-stamp on check"></div></td>
       </tr>`;
     }
+
+    // D.6 live "% of Total" total row
+    d6.innerHTML += `<tr class="pct-total-row">
+      <td><strong>Total</strong></td>
+      <td></td>
+      <td><span class="pct-total" id="d6_total_pct">0%</span></td>
+      <td></td>
+      <td></td>
+    </tr>`;
   }
 
   renderFinancialTables(currentLanguage);
@@ -2711,6 +2788,14 @@ if (c2) {
         <td><div class="ts-date-cell"><input type="checkbox" class="ts-checkbox" id="tscb_g3_${i}" onchange="tsCheck(this,'tsdate_g3_${i}')"><input type="text" id="tsdate_g3_${i}" data-key="g3_r${i}_date" class="ts-date-input" readonly placeholder="\u2014 Auto-stamp on check"></div></td>
       </tr>`;
     }
+
+    // G.3 live "% of Revenue" total row
+    g3.innerHTML += `<tr class="pct-total-row">
+      <td><strong>Total</strong></td>
+      <td><span class="pct-total" id="g3_total_pct">0%</span></td>
+      <td></td>
+      <td></td>
+    </tr>`;
   }
 
   // I.1 Master Document Checklist
@@ -2853,6 +2938,7 @@ function setSaveStatus(state, timeValue = '') {
 }
 
 function scheduleSave() {
+  if (suppressAutosave) return;
   setSaveStatus('saving');
   if (saveTimer) clearTimeout(saveTimer);
   saveTimer = setTimeout(saveNow, 2000);
@@ -2861,7 +2947,12 @@ function scheduleSave() {
 function saveNow() {
   document.querySelectorAll('[data-key]').forEach(el => {
     const key = el.dataset.key;
-    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') formData[key] = el.value;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      // Currency inputs persist their raw digit string, not the comma display
+      formData[key] = (el.classList && el.classList.contains('currency-input'))
+        ? (el.dataset.raw || '')
+        : el.value;
+    }
     else if (el.tagName === 'SELECT') formData[key] = el.value;
   });
   document.querySelectorAll('.ts-checkbox').forEach(cb => {
@@ -2880,52 +2971,27 @@ function loadSaved() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return;
     formData = JSON.parse(raw);
-    Object.entries(formData).forEach(([key, val]) => {
-      const el = document.querySelector(`[data-key="${key}"]`);
-      if (el) {
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.value = val;
-        else if (el.tagName === 'SELECT') el.value = val;
-      }
-      // Restore check-items
-      const checkEl = document.querySelector(`[onclick*="${key}"]`);
-      if (checkEl && val === true) checkEl.classList.add('checked');
-      // Restore scale buttons
-      if (key.startsWith('scale_')) {
-        const container = document.getElementById(key);
-        if (container) container.querySelectorAll('.scale-btn').forEach(btn => {
-          btn.classList.toggle('active', parseInt(btn.textContent) === val);
-        });
-      }
-      // Restore YN buttons
-      if (val === 'Yes' || val === 'No') {
-        const ynWrap = document.getElementById('yn_' + key);
-        if (ynWrap) ynWrap.querySelectorAll('.yn-btn').forEach(b => {
-          b.classList.remove('active-yes', 'active-no');
-          if (b.dataset.value === val) b.classList.add(val === 'Yes' ? 'active-yes' : 'active-no');
-        });
-      }
-      // Restore ts checkboxes
-      if (key.startsWith('tscb_')) {
-        const cb = document.getElementById(key.replace('tscb_', ''));
-        if (cb && val === true) cb.checked = true;
-      }
-      // Restore ts date stamps
-      if (key.startsWith('ts_')) {
-        const inp = document.getElementById(key.replace('ts_', ''));
-        if (inp) inp.value = val;
-      }
-    });
-    relocalizeTimestampInputs(currentLanguage);
+    applyFormDataToDOM();
     setSaveStatus('restored');
   } catch(e) { console.warn('Could not load saved data', e); }
 }
 
 // ?? AUTO-SAVE ON INPUT ????????????????????????????????????????????
 document.addEventListener('input', e => {
-  if (e.target.dataset.key) { formData[e.target.dataset.key] = e.target.value; scheduleSave(); }
+  const el = e.target;
+  if (!el.dataset || !el.dataset.key) return;
+  if (el.classList && el.classList.contains('currency-input')) formData[el.dataset.key] = el.dataset.raw || '';
+  else formData[el.dataset.key] = el.value;
+  scheduleSave();
+  if (typeof handleCalcSourceInput === 'function') handleCalcSourceInput(el.dataset.key);
 });
 document.addEventListener('change', e => {
-  if (e.target.dataset.key) { formData[e.target.dataset.key] = e.target.value; scheduleSave(); }
+  const el = e.target;
+  if (!el.dataset || !el.dataset.key) return;
+  if (el.classList && el.classList.contains('currency-input')) formData[el.dataset.key] = el.dataset.raw || '';
+  else formData[el.dataset.key] = el.value;
+  scheduleSave();
+  if (typeof handleCalcSourceInput === 'function') handleCalcSourceInput(el.dataset.key);
 });
 
 // ?? PROGRESS BAR ??????????????????????????????????????????????????
@@ -2996,37 +3062,389 @@ function exportData() {
 
 // ?? TOAST ?????????????????????????????????????????????????????????
 let toastTimer;
-function showToast() {
-  const t = document.getElementById('toast');
-  if (!t) return;
-  t.classList.add('show');
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = msg || (currentLanguage === 'fr' ? '✓ Progression enregistrée' : '✓ Progress auto-saved');
+  el.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2000);
 }
 
-// ?? INIT ???????????????????????????
+// ====================================================================
+//  CURRENCY FORMATTING ($ inputs -> 1,000,000 with live commas)
+// ====================================================================
+// Formats "2000000" as "2,000,000" in the visible field while storing
+// the raw digit string on dataset.raw (used for autosave / export /
+// auto-totals). Cursor position is preserved across reformat.
+function formatCurrencyInput(el) {
+  if (!el) return;
+  const cursorBefore = el.selectionStart == null ? el.value.length : el.selectionStart;
+  const displayBefore = el.value;
+  const digitsLeftOfCursor = displayBefore.slice(0, cursorBefore).replace(/\D/g, '').length;
+
+  const rawDigits = (el.value || '').replace(/\D/g, '').slice(0, 18);
+  const display = rawDigits === '' ? '' : Number(rawDigits).toLocaleString('en-CA');
+
+  el.value = display;
+  el.dataset.raw = rawDigits;
+
+  if (el.dataset.key) {
+    formData[el.dataset.key] = rawDigits;
+    scheduleSave();
+  }
+
+  if (document.activeElement === el) {
+    let newPos = 0, digitsSeen = 0;
+    while (newPos < display.length && digitsSeen < digitsLeftOfCursor) {
+      if (/\d/.test(display[newPos])) digitsSeen++;
+      newPos++;
+    }
+    try { el.setSelectionRange(newPos, newPos); } catch (e) { /* ignore */ }
+  }
+}
+
+function initCurrencyInputs() {
+  document.querySelectorAll('input.currency-input').forEach(el => {
+    if (el.dataset.currencyBound !== '1') {
+      el.dataset.currencyBound = '1';
+      el.addEventListener('input', () => formatCurrencyInput(el));
+    }
+    // Format any pre-filled / restored value so commas show immediately
+    formatCurrencyInput(el);
+  });
+}
+
+// ====================================================================
+//  PERCENTAGE COLUMN TOTALS (live total, green at 100%, red if over)
+// ====================================================================
+const PCT_COLS = {
+  a2_own: { totalId: 'a2_total_own' },
+  c2_pct: { totalId: 'c2_total_pct' },
+  d2_hh:  { totalId: 'd2_total_hh' },
+  d2_aum: { totalId: 'd2_total_aum' },
+  d3_pct: { totalId: 'd3_total_pct' },
+  d5_hh:  { totalId: 'd5_total_hh' },
+  d5_aum: { totalId: 'd5_total_aum' },
+  d6_pct: { totalId: 'd6_total_pct' },
+  d7_pct: { totalId: 'd7_total_pct' },
+  e2_pct: { totalId: 'e2_total_pct' },
+  f2_rev: { totalId: 'f2_total_rev' },
+  g3_pct: { totalId: 'g3_total_pct' }
+};
+
+// Maps each percentage input's data-key to its column group. Covers both
+// static tables and the JS-generated tables (C.2, D.6, G.3).
+const PCT_COL_MAP = (function () {
+  const m = {};
+  ['a2_r1_pct', 'a2_r2_pct', 'a2_r3_pct', 'a2_r4_pct'].forEach(k => m[k] = 'a2_own');
+  for (let i = 0; i < 22; i++) m['c2_' + i + '_pct'] = 'c2_pct';
+  ['u30', '30s', '40s', '50s', '60s', '70s', '80'].forEach(g => { m['d2_' + g + '_hh'] = 'd2_hh'; m['d2_' + g + '_aum'] = 'd2_aum'; });
+  ['top5', 'top10', 'top25', 'top50', 'top100'].forEach(g => m['d3_' + g + '_pct'] = 'd3_pct');
+  ['savers', 'prof', 'biz', 'corp', 'farm', 'ret', 'other'].forEach(g => { m['d5_' + g + '_hh'] = 'd5_hh'; m['d5_' + g + '_aum'] = 'd5_aum'; });
+  for (let i = 0; i < 18; i++) m['d6_' + i + '_pct'] = 'd6_pct';
+  ['qc', 'on', 'bc', 'ab', 'west', 'atl', 'other'].forEach(g => m['d7_' + g] = 'd7_pct');
+  ['recur', 'trans'].forEach(g => m['e2_' + g + '_pct'] = 'e2_pct');
+  ['f2_r1_pct', 'f2_r2_pct', 'f2_r3_pct'].forEach(k => m[k] = 'f2_rev');
+  for (let i = 0; i < 12; i++) m['g3_r' + i + '_pct'] = 'g3_pct';
+  return m;
+})();
+
+function pctOverMessage() {
+  return currentLanguage === 'fr'
+    ? 'Le total ne peut pas dépasser 100 %'
+    : 'Total cannot exceed 100%';
+}
+
+function calculateColumnTotal(col) {
+  let sum = 0;
+  document.querySelectorAll('input[data-pct-col="' + col + '"]').forEach(el => {
+    const n = parseFloat(el.value);
+    if (!isNaN(n)) sum += n;
+  });
+  return sum;
+}
+
+function updatePctTotals() {
+  Object.keys(PCT_COLS).forEach(col => {
+    const out = document.getElementById(PCT_COLS[col].totalId);
+    if (!out) return;
+    const rounded = Math.round(calculateColumnTotal(col) * 100) / 100;
+    out.textContent = rounded + '%';
+    out.classList.toggle('pct-total-full', Math.abs(rounded - 100) < 0.005);
+    out.classList.toggle('pct-total-over', rounded > 100.0001);
+  });
+}
+
+function validatePercentageColumn(el) {
+  const col = el.dataset.pctCol;
+  if (!col || !PCT_COLS[col]) return;
+
+  // Keep digits and a single decimal point only
+  let cleaned = (el.value || '').replace(/[^\d.]/g, '');
+  const firstDot = cleaned.indexOf('.');
+  if (firstDot !== -1) {
+    cleaned = cleaned.slice(0, firstDot + 1) + cleaned.slice(firstDot + 1).replace(/\./g, '');
+  }
+  if (cleaned !== el.value) {
+    const cursor = el.selectionStart;
+    el.value = cleaned;
+    try { el.setSelectionRange(cursor, cursor); } catch (e) { /* ignore */ }
+  }
+
+  // Reject a single cell over 100
+  const n = parseFloat(cleaned);
+  if (!isNaN(n) && n > 100) {
+    el.value = el.dataset.pctLastValid || '';
+    updatePctTotals();
+    showToast(pctOverMessage());
+    if (el.dataset.key) formData[el.dataset.key] = el.value;
+    return;
+  }
+
+  // Reject if the column total would exceed 100
+  if (calculateColumnTotal(col) > 100.0001) {
+    el.value = el.dataset.pctLastValid || '';
+    updatePctTotals();
+    showToast(pctOverMessage());
+    if (el.dataset.key) formData[el.dataset.key] = el.value;
+    return;
+  }
+
+  el.dataset.pctLastValid = el.value;
+  updatePctTotals();
+}
+
+function initPctValidation() {
+  document.querySelectorAll('input[data-pct-col]').forEach(el => {
+    if (el.dataset.pctBound !== '1') {
+      el.dataset.pctBound = '1';
+      el.dataset.pctLastValid = el.value || '';
+      el.addEventListener('input', () => validatePercentageColumn(el));
+    }
+  });
+  updatePctTotals();
+}
+
+// ====================================================================
+//  AUTO-CALCULATED $ TOTALS (read-only rows in E.1-E.5)
+// ====================================================================
+let CALC_GROUPS = [];
+const CALC_SOURCE_INDEX = new Map();  // sourceKey -> [targetKey, ...]
+
+function parseCurrencyValue(el) {
+  if (!el) return 0;
+  if (el.dataset && el.dataset.raw !== undefined && el.dataset.raw !== '') {
+    const n = parseFloat(el.dataset.raw);
+    return isFinite(n) ? n : 0;
+  }
+  const s = (el.value || '').replace(/[^\d.\-]/g, '');
+  const n = parseFloat(s);
+  return isFinite(n) ? n : 0;
+}
+
+function formatNumberWithCommas(n) {
+  if (!isFinite(n) || n === 0) return '';
+  return Number(n).toLocaleString('en-CA');
+}
+
+function buildCalcGroups() {
+  const groups = [];
+  // E.1 TOTAL GROSS REVENUE - rows 0..7 sum into row 8, per year (5 columns)
+  for (let y = 0; y <= 4; y++) {
+    const sources = [];
+    for (let r = 0; r < 8; r++) sources.push('e1_r' + r + '_y' + y);
+    groups.push({ sources, target: 'e1_r8_y' + y });
+  }
+  // E.3 TOTAL OPERATING EXPENSES - rows 0..8 sum into row 9, per year
+  for (let y = 0; y <= 4; y++) {
+    const sources = [];
+    for (let r = 0; r < 9; r++) sources.push('e3_r' + r + '_y' + y);
+    groups.push({ sources, target: 'e3_r9_y' + y });
+  }
+  // E.2 total revenue amount
+  groups.push({ sources: ['e2_recur_amt', 'e2_trans_amt'], target: 'e2_total_amt' });
+  // E.4 TOTAL ADD-BACKS
+  groups.push({ sources: ['e4_owner_comp', 'e4_vehicle', 'e4_ins', 'e4_spouse', 'e4_travel', 'e4_legal', 'e4_home', 'e4_other_pers', 'e4_other_nonrec'], target: 'e4_total' });
+  // E.5 TOTAL ASSETS
+  groups.push({ sources: ['e5_cash', 'e5_ar', 'e5_prepaid', 'e5_equip', 'e5_goodwill', 'e5_other_assets'], target: 'e5_total_assets' });
+  // E.5 TOTAL LIABILITIES
+  groups.push({ sources: ['e5_ap', 'e5_deferred', 'e5_st_debt', 'e5_lt_debt', 'e5_other_liab'], target: 'e5_total_liab' });
+  // E.5 TOTAL LIABILITIES + EQUITY (depends on the liabilities total -> cascades)
+  groups.push({ sources: ['e5_total_liab', 'e5_equity'], target: 'e5_total_le' });
+  return groups;
+}
+
+function updateCalculatedTotal(targetKey) {
+  const group = CALC_GROUPS.find(g => g.target === targetKey);
+  if (!group) return;
+  let sum = 0;
+  for (const k of group.sources) {
+    sum += parseCurrencyValue(document.querySelector('[data-key="' + k + '"]'));
+  }
+  const target = document.querySelector('[data-key="' + targetKey + '"]');
+  if (!target) return;
+  target.value = formatNumberWithCommas(sum);
+  target.dataset.raw = (sum === 0 ? '' : String(sum));
+  formData[targetKey] = target.dataset.raw;
+  const dependents = CALC_SOURCE_INDEX.get(targetKey);
+  if (dependents) dependents.forEach(updateCalculatedTotal);
+}
+
+function handleCalcSourceInput(srcKey) {
+  if (!srcKey) return;
+  const targets = CALC_SOURCE_INDEX.get(srcKey);
+  if (targets) targets.forEach(updateCalculatedTotal);
+}
+
+function initCalculatedTotals() {
+  CALC_GROUPS = buildCalcGroups();
+  CALC_SOURCE_INDEX.clear();
+  for (const group of CALC_GROUPS) {
+    for (const src of group.sources) {
+      if (!CALC_SOURCE_INDEX.has(src)) CALC_SOURCE_INDEX.set(src, []);
+      CALC_SOURCE_INDEX.get(src).push(group.target);
+    }
+    // Lock + style the auto-total field so it cannot be typed into
+    const target = document.querySelector('[data-key="' + group.target + '"]');
+    if (target) {
+      target.readOnly = true;
+      target.classList.add('currency-input', 'calc-total-input');
+      const wrap = target.closest('.input-prefix-wrap');
+      if (wrap) wrap.classList.add('calc-total-wrap');
+    }
+  }
+  for (const group of CALC_GROUPS) updateCalculatedTotal(group.target);
+}
+
+// ====================================================================
+//  TAG STATIC + DYNAMIC PREFIX INPUTS ($ -> currency, % -> column)
+// ====================================================================
+function tagPrefixInputs() {
+  document.querySelectorAll('.input-prefix-wrap').forEach(wrap => {
+    const sym = wrap.querySelector('.input-prefix-symbol');
+    const inp = wrap.querySelector('input');
+    if (!sym || !inp) return;
+    const s = sym.textContent.trim();
+    if (s === '$') {
+      inp.classList.add('currency-input');
+    } else if (s === '%') {
+      const col = PCT_COL_MAP[inp.dataset.key];
+      if (col) inp.dataset.pctCol = col;
+    }
+  });
+}
+
+// ====================================================================
+//  RESTORE SAVED DATA INTO THE DOM (used by all load paths)
+// ====================================================================
+function applyFormDataToDOM() {
+  Object.entries(formData).forEach(([key, val]) => {
+    const el = document.querySelector('[data-key="' + key + '"]');
+    if (el) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+        if (el.classList && el.classList.contains('currency-input')) {
+          const s = val == null ? '' : String(val);
+          el.value = s;
+          el.dataset.raw = s;
+        } else {
+          el.value = val;
+        }
+      }
+    }
+    // Restore check-items (and radio-style)
+    const checkEl = document.querySelector('[onclick*="\'' + key + '\'"]');
+    if (checkEl && val === true) checkEl.classList.add('checked');
+    // Restore 1-7 scale buttons
+    if (key.startsWith('scale_')) {
+      const container = document.getElementById(key);
+      if (container) container.querySelectorAll('.scale-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.textContent) === val);
+      });
+    }
+    // Restore Yes/No toggles
+    if (val === 'Yes' || val === 'No') {
+      const ynWrap = document.getElementById('yn_' + key);
+      if (ynWrap) ynWrap.querySelectorAll('.yn-btn').forEach(b => {
+        b.classList.remove('active-yes', 'active-no');
+        if (b.dataset.value === val) b.classList.add(val === 'Yes' ? 'active-yes' : 'active-no');
+      });
+    }
+    // Restore timestamp checkboxes
+    if (key.startsWith('tscb_')) {
+      const cb = document.getElementById(key.replace('tscb_', ''));
+      if (cb && val === true) cb.checked = true;
+    }
+    // Restore timestamp date text
+    if (key.startsWith('ts_')) {
+      const inp = document.getElementById(key.replace('ts_', ''));
+      if (inp) inp.value = val;
+    }
+  });
+  relocalizeTimestampInputs(currentLanguage);
+}
+
+// Re-apply values + formatting to E.1/E.3 after they are rebuilt on a
+// language switch (renderFinancialTables replaces their innerHTML).
+function rehydrateFinancialTables() {
+  ['e1_table', 'e3_table'].forEach(id => {
+    const tbl = document.getElementById(id);
+    if (!tbl) return;
+    tbl.querySelectorAll('[data-key]').forEach(el => {
+      const k = el.dataset.key;
+      if (formData[k] != null) {
+        const s = String(formData[k]);
+        el.value = s;
+        if (el.classList.contains('currency-input')) el.dataset.raw = s;
+      }
+    });
+  });
+  initCurrencyInputs();
+  initCalculatedTotals();
+}
+
 // ?? INIT ??????????????????????????????????????????????????????????
-document.addEventListener('DOMContentLoaded', () => {
-
-  const params = new URLSearchParams(window.location.search);
-const token = params.get("token");
-
-if (token) {
-    loadFromSupabaseToken(token);
-}
+document.addEventListener('DOMContentLoaded', async () => {
+  suppressAutosave = true;
 
   buildDynamicContent();
+  tagPrefixInputs();
   localizeYesNoControls(currentLanguage);
   localizeF1FtptOptions(currentLanguage);
+
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get("token");
+  if (token) {
+    await loadFromSupabaseToken(token);
+  } else {
+    loadSaved();
+  }
+
+  initCurrencyInputs();
+  initPctValidation();
+  initCalculatedTotals();
   updateProgress();
 
   const fileInput = document.getElementById("header_fileno");
+  if (fileInput) {
+    fileInput.addEventListener("change", async (e) => {
+      const fileNo = e.target.value;
+      if (fileNo) {
+        suppressAutosave = true;
+        await loadFromSupabase(fileNo);
+        tagPrefixInputs();
+        initCurrencyInputs();
+        initPctValidation();
+        initCalculatedTotals();
+        updateProgress();
+        setTimeout(() => { suppressAutosave = false; }, 500);
+      }
+    });
+  }
 
-  fileInput.addEventListener("change", (e) => {
-    const fileNo = e.target.value;
-    if (fileNo) loadFromSupabase(fileNo);
-  });
-
+  // Re-enable autosave only after the initial build + restore is done,
+  // so loading the document restores data instead of overwriting it.
+  setTimeout(() => { suppressAutosave = false; }, 1000);
 });
 </script>
 <script>
@@ -4817,6 +5235,8 @@ function setLanguage(lang) {
   currentLanguage = lang;
 
   renderFinancialTables(lang);
+  // E.1/E.3 were just rebuilt — restore their values + currency formatting + totals
+  if (typeof rehydrateFinancialTables === 'function') rehydrateFinancialTables();
 
   document.querySelectorAll("[data-translate]").forEach(el => {
     const key = el.getAttribute("data-translate");
