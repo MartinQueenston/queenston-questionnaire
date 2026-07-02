@@ -3415,10 +3415,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
   const token = params.get("token");
   if (token) {
-    await loadFromSupabaseToken(token);
-  } else {
-    loadSaved();
+  await loadFromSupabaseToken(token);
+} else {
+  // No token = public blank form. Do not restore browser localStorage.
+  formData = {};
+
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch (e) {
+    console.warn('Could not clear localStorage', e);
   }
+
+  setSaveStatus('idle');
+}
 
   initCurrencyInputs();
   initPctValidation();
